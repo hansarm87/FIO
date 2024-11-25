@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <DUT Name="CM_DIN_UDT" Id="{19945d24-740f-4b2b-8f70-25667657d4c7}">
+    <Declaration><![CDATA[TYPE CM_DIN_UDT :
+STRUCT
+	SensorInput : BOOL;
+	
+	AutoHigh : BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

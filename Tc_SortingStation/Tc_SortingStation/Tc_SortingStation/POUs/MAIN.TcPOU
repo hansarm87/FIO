@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="MAIN" Id="{54fc3697-1197-40f3-acf2-4a0b47230f51}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	//FBs
+	fbPlant: FB_Plant;
+	Ctrl_data_plant : Plant_CTRL;
+	
+	fbConveyorEntry : FB_Conveyor;
+	
+	fbSorter : FB_Sorter;
+	
+	// Control modules call
+	cmVision : CM_VisionSensor;
+	Ctrl_data_vision : CM_Vision_UDT;
+	
+	cmConveyor1 : CM_DO;
+	cmConveyor2 : CM_DO;
+	Ctrl_data_Conveyor1 : CM_DO_UDT;
+	Ctrl_data_Conveyor2 : CM_DO_UDT;
+	
+	cmAtExit : CM_DIN;
+	Ctrl_data_exit : CM_DIN_UDT;
+	
+	cmSorter1 : CM_DO;
+	Crtl_data_sorter1 : CM_DO_UDT;
+	cmSorter2 : CM_DO;
+	Crtl_data_sorter2 : CM_DO_UDT;
+	cmSorter3 : CM_DO;
+	Crtl_data_sorter3 : CM_DO_UDT;
+	
+	cmStopBlade : CM_DO;
+	crtl_data_StopBlade : CM_DO_UDT;
+	
+	cmEmitter : CM_DO;
+	ctrl_data_emitter : CM_DO_UDT;
+	
+END_VAR
+
+VAR_IN_OUT
+	
+END_VAR
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+fbPlant(
+	bAuto_IN:= FIO.bAuto, 
+	bManual_IN:= FIO.bManual,
+	bStart_IN := FIO.bStart,
+	bStop_IN := FIO.bStop,
+	bReset_IN := FIO.bReset,
+	bEmgStop_IN := FIO.bEmgStop,
+ 
+	bAuto_OUT=> , 
+	bManual_OUT=> ,
+ 
+	PlantCtrl:= Ctrl_data_plant);
+	
+IF fbPlant.bEmgStop_IN THEN
+	fbConveyorEntry(
+		control_data := Ctrl_data_plant,
+		control_data_vision := Ctrl_data_vision,
+		control_data_Conveyor1 := Ctrl_data_Conveyor1,
+		control_data_StopBlade := crtl_data_StopBlade,
+		control_data_emitter := ctrl_data_emitter
+		);	
+	
+	fbSorter(
+		control_data := Ctrl_data_plant,
+		control_data_vision := Ctrl_data_vision,
+		control_data_Conveyor2 := Ctrl_data_Conveyor2,
+		control_data_sorter1 := Crtl_data_sorter1,
+		control_data_sorter2 := Crtl_data_sorter2,
+		control_data_sorter3 := Crtl_data_sorter3,
+		control_data_atExit := Ctrl_data_exit,
+	
+	);	
+END_IF	
+
+
+
+//// CM Calls
+cmConveyor1( 
+	Control_data_DO := Ctrl_data_Conveyor1,
+	
+   	PO_HighCommand => FIO.bConveyorEntry_out
+	); 
+ 
+cmConveyor2(
+	Control_data_DO := Ctrl_data_Conveyor2,
+	PO_HighCommand => FIO.bConveyorExit_out
+	);
+	
+cmAtExit(
+	PI_autoHigh := FIO.bAtExit,
+	Control_data := Ctrl_data_exit);
+
+	
+cmVision(
+	SensorInput := FIO.iVisionSensor,
+	control_data_vision := Ctrl_data_Vision);
+	
+cmSorter1(
+	Control_data_DO := Crtl_data_sorter1,
+	PO_HighCommand => FIO.bSorter_1_out, 
+	PO_HighCommand => FIO.bSorter_1_turn
+	);
+cmSorter2(
+	Control_data_DO := Crtl_data_sorter2,
+	PO_HighCommand => FIO.bSorter_2_out, 
+	PO_HighCommand => FIO.bSorter_2_turn
+	);
+	
+cmSorter3(
+	Control_data_DO := Crtl_data_sorter3,
+	PO_HighCommand => FIO.bSorter_3_out,
+	PO_HighCommand => FIO.bSorter_3_turn
+	);
+	
+cmStopBlade(
+	Control_data_DO := crtl_data_StopBlade,
+	PO_HighCommand => FIO.bStopBlade
+	);
+cmEmitter(
+	PO_HighCommand => FIO.bEmitter,
+	Control_data_DO := ctrl_data_emitter
+	);]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="252" Count="0" />
+      <LineId Id="14" Count="2" />
+      <LineId Id="25" Count="2" />
+      <LineId Id="251" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="17" Count="1" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="255" Count="0" />
+      <LineId Id="257" Count="2" />
+      <LineId Id="261" Count="0" />
+      <LineId Id="359" Count="0" />
+      <LineId Id="262" Count="0" />
+      <LineId Id="272" Count="0" />
+      <LineId Id="263" Count="0" />
+      <LineId Id="265" Count="6" />
+      <LineId Id="273" Count="0" />
+      <LineId Id="254" Count="0" />
+      <LineId Id="253" Count="0" />
+      <LineId Id="163" Count="0" />
+      <LineId Id="167" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="130" Count="0" />
+      <LineId Id="129" Count="0" />
+      <LineId Id="128" Count="0" />
+      <LineId Id="63" Count="0" />
+      <LineId Id="153" Count="0" />
+      <LineId Id="151" Count="0" />
+      <LineId Id="155" Count="0" />
+      <LineId Id="154" Count="0" />
+      <LineId Id="156" Count="0" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="161" Count="1" />
+      <LineId Id="62" Count="0" />
+      <LineId Id="69" Count="0" />
+      <LineId Id="66" Count="0" />
+      <LineId Id="119" Count="0" />
+      <LineId Id="67" Count="0" />
+      <LineId Id="177" Count="0" />
+      <LineId Id="174" Count="2" />
+      <LineId Id="208" Count="0" />
+      <LineId Id="173" Count="0" />
+      <LineId Id="190" Count="2" />
+      <LineId Id="207" Count="0" />
+      <LineId Id="189" Count="0" />
+      <LineId Id="197" Count="0" />
+      <LineId Id="194" Count="2" />
+      <LineId Id="206" Count="0" />
+      <LineId Id="193" Count="0" />
+      <LineId Id="202" Count="0" />
+      <LineId Id="198" Count="3" />
+      <LineId Id="314" Count="0" />
+      <LineId Id="356" Count="2" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

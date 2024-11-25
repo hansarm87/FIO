@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <GVL Name="FIO" Id="{b37a2e8c-5731-4f19-afec-b7a13a3abb8d}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+
+//Sensor	Bool	FACTORY I/O (Running)	496	FALSE
+//Sensor	Bool	FACTORY I/O (Paused)	497	FALSE
+//Sensor	Bool	FACTORY I/O (Reset)	498	FALSE
+bAtExit : BOOL;	//Sensor	Bool	At exit	2	TRUE
+
+bEmgStop : BOOL; //Sensor	Bool	Emergency stop	0	TRUE
+bStart : BOOL;	//Sensor	Bool	Start	1	FALSE
+bStop : BOOL;	//Sensor	Bool	Stop	3	TRUE
+bReset : BOOL;	//Sensor	Bool	Reset	4	FALSE
+bManual : BOOL;	//Sensor	Bool	Manual	5	TRUE
+bAuto : BOOL; 	//Sensor	Bool	Auto	6	FALSE
+
+//Sensor	Float	FACTORY I/O (Time Scale)	240	0
+iVisionSensor : DINT;	//Sensor	Int	Vision sensor	0	0
+//Actuator	Bool	FACTORY I/O (Run)	496	FALSE
+//Actuator	Bool	FACTORY I/O (Pause)	497	FALSE
+//Actuator	Bool	FACTORY I/O (Reset)	498	FALSE
+bEmitter : BOOL; //Actuator	Bool	Emitter	0	TRUE
+bConveyorEntry_out: BOOL; 	//Actuator	Bool	Entry conveyor	1	FALSE
+bConveyorExit_out : BOOL; 		//Actuator	Bool	Exit conveyor	2	FALSE
+bStopBlade : BOOL; 	//Actuator	Bool	Stop blade	3	FALSE
+//Actuator	Bool	-	6	FALSE
+bSorter_1_out : BOOL;	//Actuator	Bool	Sorter 1 belt	5	FALSE
+bSorter_1_turn : BOOL;	//Actuator	Bool	Sorter 1 turn	4	FALSE
+//Actuator	Bool	-	9	FALSE
+bSorter_2_out : BOOL;	//Actuator	Bool	Sorter 2 belt	8	FALSE
+bSorter_2_turn : BOOL;	//Actuator	Bool	Sorter 2 turn	7	FALSE
+//Actuator	Bool	-	12	FALSE
+bSorter_3_out : BOOL;	//Actuator	Bool	Sorter 3 belt	11	FALSE
+bSorter_3_turn : BOOL;	//Actuator	Bool	Sorter 3 turn	10	FALSE
+//Actuator	Bool	Remover 1	13	TRUE
+//Actuator	Bool	Remover 2	14	TRUE
+//Actuator	Bool	Remover 3	15	TRUE
+//Actuator	Bool	Start light	16	FALSE
+//Actuator	Bool	Stop light	17	FALSE
+//Actuator	Bool	Reset light	18	FALSE
+//Actuator	Int	FACTORY I/O (Camera Position)	240	0
+//Actuator	Int	Counter 3	2	0
+//Actuator	Int	Counter 1	0	0
+//Actuator	Int	Counter 2	1	0
+
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <GVL Name="GVL" Id="{1db32c1a-a79f-4e06-afd4-41fa651e6777}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	GREEN_BOTTOM : BOOL; // 4
+	GREEN_TOP : BOOL;	// 5
+	GREEN_MIDDLE : BOOL; // 6
+	
+	BLUE_BOTTOM : BOOL; // 1
+	BLUE_TOP : BOOL; // 2
+	BLUE_MIDDLE : BOOL; // 3
+	
+	SortingDone : BOOL;
+	readyForSorting : BOOL;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

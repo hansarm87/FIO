@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <DUT Name="CM_DO_UDT" Id="{afd623ad-b316-45a6-a6d5-a8a6f4f8bdba}">
+    <Declaration><![CDATA[TYPE CM_DO_UDT :
+STRUCT
+	PI_Enable : BOOL;
+	
+	PO_HighCommand : BOOL;
+	PO_LowCommand : BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

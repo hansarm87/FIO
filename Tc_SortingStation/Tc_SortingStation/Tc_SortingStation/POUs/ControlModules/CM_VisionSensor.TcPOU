@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="CM_VisionSensor" Id="{e05ef0fa-dc49-45cf-a155-8da901e6d7c1}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK CM_VisionSensor
+VAR_INPUT
+	SensorInput : DINT;
+END_VAR
+VAR_OUTPUT
+	SensorOutput : DINT;
+END_VAR
+VAR_IN_OUT
+	control_data_vision : CM_Vision_UDT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+SensorOutput := SensorInput;
+
+control_data_vision.PO_PV := SensorOutput;
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="CM_VisionSensor">
+      <LineId Id="37" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="21" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <DUT Name="CM_Vision_UDT" Id="{2f9f2898-77d2-41aa-9383-0ef02fbf4b89}">
+    <Declaration><![CDATA[TYPE CM_Vision_UDT :
+STRUCT
+	Input : DINT;
+	
+	PO_PV : DINT;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
