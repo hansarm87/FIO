@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="PRG_PID_CALL" Id="{e7fc84ae-b95c-477c-b1bf-9630c0dddc70}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM PRG_PID_CALL
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//aiSpare02c AT %I*: INT; //ch3 0-10v  Legacy range			(0-32767)
+//measure 0-10v
+//GVL.rAIInput1 := (INT_TO_REAL(IO.aiSpare02c)/(32767.0-0.0)) * 10.0;
+
+//aiSpare02d AT %I*: INT; //ch4 0-20mA Extended range 		(0 -30518)
+//measure 0-100%
+//GVL.rAIInput2 := (INT_TO_REAL(IO.aiSpare02d)/(30518.0-0.0)) * 100.0;
+
+
+
+PRG_FB_CTRL_PID();
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="PRG_PID_CALL">
+      <LineId Id="10" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="20" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

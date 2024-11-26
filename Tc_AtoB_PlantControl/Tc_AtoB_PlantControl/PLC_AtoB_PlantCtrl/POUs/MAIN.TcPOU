@@ -5,6 +5,20 @@
 VAR
 	fbPlantControl : FB_PlantControl;
 	Ctrl_data_Plant : Udt_PlantControl_Out;
+	
+	Ctrl_data_StateMachine :Udt_PlantControl_Out;
+	
+	cmSensorA : CM_Sensor2State;
+	Ctrl_data_SensorA : Udt_CM_Sensor2State;
+	
+	cmSensorB : CM_Sensor2State;
+	Ctrl_data_SensorB : Udt_CM_Sensor2State;
+	
+	cmConveyorEntry : CM_Actuator3State;
+	Ctrl_data_ConveyorEntry : Udt_CM_Actuator3State;
+	
+	cmConveyorMain : CM_Actuator3State;
+	Ctrl_data_ConveyorMain : Udt_CM_Actuator3State;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -23,11 +37,68 @@ END_VAR
 	EmgStopped_Out => FIO.bRedLight,
 
 	Ctrl_Plant := Ctrl_data_Plant
+	);
+	
+Prg_StateMachine(
+	Plant_Ctrl := Ctrl_data_Plant,
+	
+	cmSensor2State_sensorA := Ctrl_data_SensorA,
+	cmSensor2State_sensorB := Ctrl_data_SensorB,
+
+	cmActuator3State_ConveyorEntry :=  Ctrl_data_ConveyorEntry,
+	cmActuator3State_ConveyorMain := Ctrl_data_ConveyorMain
+);
+
+cmSensorA(
+	sensorInput := FIO.bSensorA,
+
+	Ctrl_CM_Sensor2State := Ctrl_data_SensorA
+	);
+cmSensorB(
+	sensorInput := FIO.bSensorB,
+
+	Ctrl_CM_Sensor2State := Ctrl_data_SensorB
+	);
+	
+cmConveyorEntry(
+	output_2 => FIO.bEntryConveyor,
+	
+	Ctrl_CM_Actuator3State := Ctrl_data_ConveyorEntry
+	);
+	
+cmConveyorMain(
+	output_2 => FIO.bConveyorCW,
+	output_3 => FIO.bConveyorCCW,
+	
+	Ctrl_CM_Actuator3State := Ctrl_data_ConveyorMain
 	);]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
       <LineId Id="6" Count="14" />
       <LineId Id="2" Count="0" />
+      <LineId Id="26" Count="1" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="69" Count="0" />
+      <LineId Id="68" Count="0" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="41" Count="1" />
+      <LineId Id="39" Count="1" />
+      <LineId Id="44" Count="3" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="64" Count="1" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="63" Count="0" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="62" Count="0" />
+      <LineId Id="72" Count="4" />
     </LineIds>
   </POU>
 </TcPlcObject>

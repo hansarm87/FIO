@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <GVL Name="IO" Id="{7bbfd524-a1e0-4155-9e8c-f7e2ce0d5523}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	
+	//EL3044
+	aiSpare01a AT %I*: INT;
+	aiSpare01b AT %I*: INT;
+	aiSpare01c AT %I*: INT;
+	aiSpare01d AT %I*: INT;
+	
+	//EL3074
+	aiSpare02a AT %I*: INT;
+	aiSpare02b AT %I*: INT;
+	aiSpare02c AT %I*: INT; //ch3 0-10v  Legacy range			(0-32767)
+	aiSpare02d AT %I*: INT; //ch4 0-20mA Extended range 		(0 -30518)
+	
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

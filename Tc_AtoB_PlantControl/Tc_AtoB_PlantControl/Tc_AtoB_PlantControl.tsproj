@@ -18,7 +18,7 @@
 		</System>
 		<Plc>
 			<Project GUID="{CB531DC7-31EA-4336-A915-AF4116ED141A}" Name="PLC_AtoB_PlantCtrl" PrjFilePath="PLC_AtoB_PlantCtrl\PLC_AtoB_PlantCtrl.plcproj" TmcFilePath="PLC_AtoB_PlantCtrl\PLC_AtoB_PlantCtrl.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" CopyTmcToTarget="true" CopyTpyToTarget="false" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{D6AF5F1D-653C-EF91-A3A0-B67FE4A605E8}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC_AtoB_PlantCtrl\PLC_AtoB_PlantCtrl.tmc" TmcHash="{3EA56999-8647-8C10-45E5-7F0A7EF63869}">
 					<Name>PLC_AtoB_PlantCtrl Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Contexts>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <DUT Name="Udt_CM_Actuator3State" Id="{a019e61f-565f-4b94-8e93-967ce286bf1c}">
+    <Declaration><![CDATA[TYPE Udt_CM_Actuator3State :
+STRUCT
+	output_state1 : BOOL;
+	output_state2 : BOOL;
+	output_state3 : BOOL;
+	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

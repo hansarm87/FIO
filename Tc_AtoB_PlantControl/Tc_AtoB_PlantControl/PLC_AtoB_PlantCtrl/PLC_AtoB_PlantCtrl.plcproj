@@ -18,6 +18,12 @@
     <LibraryReferences>{ffca48a6-9737-46b0-a5da-9681619bb39b}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DUTs\Udt_CM_Actuator3State.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Udt_CM_Sensor2State.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Udt_PlantControl_Out.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -28,16 +34,26 @@
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\CMs\CM_Actuator3State.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\CMs\CM_Sensor2State.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\FB_PlantControl.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\Prg_StateMachine.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
+    <Folder Include="POUs\CMs" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>

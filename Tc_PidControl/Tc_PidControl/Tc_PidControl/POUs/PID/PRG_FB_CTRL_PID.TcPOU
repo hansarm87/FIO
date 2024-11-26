@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="PRG_FB_CTRL_PID" Id="{ab4b9d68-903a-4dd7-8d89-3218bcdb26f1}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM PRG_FB_CTRL_PID
+VAR
+	fSetpointValue					: LREAL		:= 5.0;
+	fActualValue					: LREAL;
+	fManSyncValue					: LREAL;
+	bSync							: BOOL;
+
+	fOut							: LREAL;
+	bHold							: BOOL;
+
+	eMode							: E_CTRL_MODE;
+	stCTRL_PID_PARAMS				: ST_CTRL_PID_PARAMS;
+
+	eErrorId						: E_CTRL_ERRORCODES;
+	bError							: BOOL;
+	bARWactive						: BOOL;
+
+	(* controller *)
+	fbCTRL_PID						: FB_CTRL_PID;
+
+	bInit							: BOOL	:= TRUE;
+	fbTON							: TON;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF bInit THEN
+	(* init parameter struct *)
+	stCTRL_PID_PARAMS.tCtrlCycleTime		:= T#1000MS;
+	stCTRL_PID_PARAMS.tTaskCycleTime		:= T#100MS;
+	stCTRL_PID_PARAMS.fKp					:= 2.0;			(* proportional gain Kp				*)
+	stCTRL_PID_PARAMS.tTn					:= T#1S;		(*  Tn								*)
+	stCTRL_PID_PARAMS.tTv					:= T#200MS;		(*  Tv								*)
+	stCTRL_PID_PARAMS.tTd					:= T#100MS;		(*  Td								*)
+	stCTRL_PID_PARAMS.fOutMaxLimit			:=  10.0;			(* maximum output limit				*)
+	stCTRL_PID_PARAMS.fOutMinLimit			:= -0.0;			(* minimum output limit				*)
+
+	(* set the mode to ACTIVE --> normal operation *)
+	eMode := eCTRL_MODE_ACTIVE;
+
+	(* reset the init flag *)
+	bInit := FALSE;
+END_IF
+
+(*
+TYPE E_CTRL_MODE :
+(
+    eCTRL_MODE_IDLE       := 0, (* mode idle *)
+    eCTRL_MODE_PASSIVE    := 1, (* mode passive *)
+    eCTRL_MODE_ACTIVE     := 2, (* mode active *)
+    eCTRL_MODE_RESET      := 3, (* mode reset *)
+    eCTRL_MODE_MANUAL     := 4, (* mode manual *)
+    eCTRL_MODE_TUNE       := 5, (* mode tuning *)
+    eCTRL_MODE_SELFTEST       := 6, (* mode selftest *)
+    eCTRL_MODE_SYNC_MOVEMENT  := 7  (* mode synchronize *)
+);
+END_TYPE
+*)
+
+fActualValue := FIO.rLevelMeter;
+fSetpointValue := FIO.rSetPoint;
+
+(* copy var to scope var *)
+GVL.fSetpointValueToScope 	:= fSetpointValue;
+GVL.fActualValueToScope 	:= fActualValue;
+
+
+(* call controller *)
+fbCTRL_PID(		fSetpointValue		:= fSetpointValue,
+				fActualValue		:= fActualValue, //feedback value (proces variable)
+				fManSyncValue		:= fManSyncValue,
+				bSync				:= bSync,
+				eMode				:= eMode,
+				bHold				:= bHold,
+				stParams			:= stCTRL_PID_PARAMS,
+				fOut				=> fOut, // output to PID
+				bARWactive			=> bARWactive,
+				eErrorId			=> eErrorId,
+				bError				=> bError
+				);
+
+
+(* copy var to scope var *)
+GVL.fOutToScope := fOut;
+FIO.rFillValve :=  fOut;]]></ST>
+    </Implementation>
+    <LineIds Name="PRG_FB_CTRL_PID">
+      <LineId Id="3" Count="18" />
+      <LineId Id="80" Count="10" />
+      <LineId Id="79" Count="0" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="76" Count="0" />
+      <LineId Id="75" Count="0" />
+      <LineId Id="30" Count="21" />
+      <LineId Id="2" Count="0" />
+      <LineId Id="77" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
