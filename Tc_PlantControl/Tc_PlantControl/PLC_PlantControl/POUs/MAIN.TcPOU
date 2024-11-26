@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="MAIN" Id="{afe816a1-7fba-460f-a8ae-1ac654733542}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	fbPlantControl : FB_PlantControl;
+	Ctrl_data_Plant : Udt_PlantControl_Out;
+	
+	fbRunApp : FB_runApp;
+END_VAR
+VAR_IN_OUT
+	
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+fbPlantControl(
+	//Set up variables to IO here
+	Auto_In := FIO.bAuto,
+	Manual_In := FIO.bManual,
+	
+	Start_In := FIO.bStart,
+	Stop_In := FIO.bStop,
+	EmgStop_In := FIO.bEmgStop,
+	Reset_In := FIO.bReset,
+	
+	Startet_Out => FIO.bGreenLight,
+	Stopped_Out => FIO.bYellowLight,
+	EmgStopped_Out => FIO.bRedLight,
+
+	Ctrl_Plant := Ctrl_data_Plant
+	);
+	
+IF fbPlantControl.Auto_Out THEN
+	fbRunApp();
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="2" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="37" Count="9" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="14" Count="3" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

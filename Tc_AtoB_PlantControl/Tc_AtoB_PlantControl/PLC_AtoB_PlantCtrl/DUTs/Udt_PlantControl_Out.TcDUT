@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <DUT Name="Udt_PlantControl_Out" Id="{243acc72-10d8-4386-bf88-a9535b66935e}">
+    <Declaration><![CDATA[TYPE Udt_PlantControl_Out :
+STRUCT
+	Auto_Out : BOOL;
+	Manual_Out : BOOL;
+	
+	Startet_Out : BOOL;
+	Stopped_Out : BOOL;
+	Reset_Out : BOOL;
+	ResetEmgStop_Out_5s :BOOL;
+	
+	EmgStopped_Out : BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <GVL Name="FIO" Id="{7f6b1954-7af8-404f-8e0e-e076563c0b7b}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	
+	bEmgStop : BOOL := TRUE; //Sensor	Bool	Emergency stop	0	TRUE
+	bStart : BOOL;	//Sensor	Bool	Start	1	FALSE
+	bStop : BOOL := TRUE;	//Sensor	Bool	Stop	3	TRUE
+	bReset : BOOL;	//Sensor	Bool	Reset	4	FALSE
+	bManual : BOOL;	//Sensor	Bool	Manual	5	TRUE
+	bAuto : BOOL; 	//Sensor	Bool	Auto	6	FALSE
+	
+	bGreenLight : BOOL;
+	bYellowLight : BOOL;
+	bRedLight : BOOL;
+	
+	
+	bSensorB : BOOL;
+	bSensorA : BOOL;
+	
+	bEntryConveyor : BOOL;
+	
+	bConveyorCW : BOOL;
+	bConveyorCCW : BOOL;
+//Sensor	Bool	Sensor B	1	TRUE
+//Sensor	Bool	Sensor A	0	TRUE
+
+//Actuator	Bool	Roller Conveyor (4m) 1 (+)	0	FALSE
+//Actuator	Bool	Roller Conveyor (4m) 1 (-)	2	FALSE
+//Actuator	Bool	Entry conveyor	1	FALSE
+
+
+
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

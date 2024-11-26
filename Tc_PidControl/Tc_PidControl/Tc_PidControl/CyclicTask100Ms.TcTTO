@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <Task Name="CyclicTask100Ms" Id="{ae96e76a-4c65-4447-87bd-4c7812b39597}">
+    <!--CycleTime in micro seconds.-->
+    <CycleTime>100000</CycleTime>
+    <Priority>1</Priority>
+    <PouCall>
+      <Name>PRG_PID_CALL</Name>
+    </PouCall>
+    <TaskFBGuid>{d9840776-8af0-4c37-9159-b1d32412287c}</TaskFBGuid>
+    <Fb_init>{a93e6d07-5204-4b03-8a95-d37c8062a490}</Fb_init>
+    <Fb_exit>{a0612c74-033d-41a2-b8eb-41f98825a46c}</Fb_exit>
+    <CycleUpdate>{5de63c18-a668-4cd6-9c55-44a81bfa5fd5}</CycleUpdate>
+    <PostCycleUpdate>{814c11a5-28ee-4d47-9dd2-21bc2d670bb2}</PostCycleUpdate>
+  </Task>
+</TcPlcObject>

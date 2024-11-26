@@ -3,31 +3,35 @@
   <PropertyGroup>
     <FileVersion>1.0.0.0</FileVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{2f5f91ee-19c1-4128-9dbd-087f8c24b8c8}</ProjectGuid>
+    <ProjectGuid>{cb531dc7-31ea-4336-a915-af4116ed141a}</ProjectGuid>
     <SubObjectsSortedByName>True</SubObjectsSortedByName>
     <DownloadApplicationInfo>true</DownloadApplicationInfo>
     <WriteProductVersion>true</WriteProductVersion>
     <GenerateTpy>false</GenerateTpy>
-    <Name>Tc_PidControl</Name>
+    <Name>PLC_AtoB_PlantCtrl</Name>
     <ProgramVersion>3.1.4024.0</ProgramVersion>
-    <Application>{80869c47-39ac-4d3b-be7a-7d9715438cd5}</Application>
-    <TypeSystem>{a39ffcb4-0dbc-4309-9449-2faffd5a9980}</TypeSystem>
-    <Implicit_Task_Info>{dd31b6c4-0b3c-49eb-92f0-8722e55e5a05}</Implicit_Task_Info>
-    <Implicit_KindOfTask>{9085b827-c00e-4cfb-97fa-e7f12ed6b013}</Implicit_KindOfTask>
-    <Implicit_Jitter_Distribution>{06deef36-301a-41b2-929e-4a018ebe0bd6}</Implicit_Jitter_Distribution>
-    <LibraryReferences>{591267d8-945e-44fd-a8a9-286233d68df5}</LibraryReferences>
+    <Application>{c91cef9b-7045-44ab-a704-9d283a2a1bc5}</Application>
+    <TypeSystem>{1d99b3d3-21b5-4173-ba56-00ffbab961b8}</TypeSystem>
+    <Implicit_Task_Info>{21b2e800-eaed-42cd-9040-f2e9b71f2e06}</Implicit_Task_Info>
+    <Implicit_KindOfTask>{409ddd57-295a-4020-b706-6063aa0b278a}</Implicit_KindOfTask>
+    <Implicit_Jitter_Distribution>{ec676ccb-9a50-459c-b941-b44fd918b27b}</Implicit_Jitter_Distribution>
+    <LibraryReferences>{ffca48a6-9737-46b0-a5da-9681619bb39b}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="CyclicTask100Ms.TcTTO">
+    <Compile Include="DUTs\Udt_PlantControl_Out.TcDUT">
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GVLs\FIO.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
     </Compile>
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\MAIN.TcPOU">
+    <Compile Include="POUs\FB_PlantControl.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\PRG_PID_CALL.TcPOU">
+    <Compile Include="POUs\MAIN.TcPOU">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -38,9 +42,6 @@
     <Folder Include="POUs" />
   </ItemGroup>
   <ItemGroup>
-    <PlaceholderReference Include="Tc2_ControllerToolbox">
-      <DefaultResolution>Tc2_ControllerToolbox, * (Beckhoff Automation GmbH)</DefaultResolution>
-    </PlaceholderReference>
     <PlaceholderReference Include="Tc2_Standard">
       <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc2_Standard</Namespace>
@@ -48,32 +49,6 @@
     <PlaceholderReference Include="Tc2_System">
       <DefaultResolution>Tc2_System, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc2_System</Namespace>
-      <Parameters>
-        <Parameter ListName="PARAM" xmlns="">
-          <Key>TABLE_UPPER_BOUND</Key>
-          <Value>15</Value>
-        </Parameter>
-        <Parameter ListName="PARAM" xmlns="">
-          <Key>STRING_LENGTH_EXP</Key>
-          <Value>255</Value>
-        </Parameter>
-        <Parameter ListName="PARAM" xmlns="">
-          <Key>STRING_LENGTH_ADDRESS</Key>
-          <Value>20</Value>
-        </Parameter>
-        <Parameter ListName="PARAM" xmlns="">
-          <Key>STRING_LENGTH_COMMENT</Key>
-          <Value>255</Value>
-        </Parameter>
-        <Parameter ListName="PARAM" xmlns="">
-          <Key>STRING_LENGTH_OUTSTRING</Key>
-          <Value>255</Value>
-        </Parameter>
-        <Parameter ListName="PARAM" xmlns="">
-          <Key>TABLE_SHOW_VALID_ITEMS</Key>
-          <Value>FALSE</Value>
-        </Parameter>
-      </Parameters>
     </PlaceholderReference>
     <PlaceholderReference Include="Tc3_Module">
       <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
@@ -81,7 +56,7 @@
     </PlaceholderReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Tc_PidControl.tmc">
+    <None Include="PLC_AtoB_PlantCtrl.tmc">
       <SubType>Content</SubType>
     </None>
   </ItemGroup>

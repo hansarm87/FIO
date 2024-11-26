@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="MAIN" Id="{1def7cfd-80b9-4f31-863c-2e39f24c034b}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	fbPlantControl : FB_PlantControl;
+	Ctrl_data_Plant : Udt_PlantControl_Out;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fbPlantControl(
+	//Set up variables to IO here
+	Auto_In := FIO.bAuto,
+	Manual_In := FIO.bManual,
+	
+	Start_In := FIO.bStart,
+	Stop_In := FIO.bStop,
+	EmgStop_In := FIO.bEmgStop,
+	Reset_In := FIO.bReset,
+	
+	Startet_Out => FIO.bGreenLight,
+	Stopped_Out => FIO.bYellowLight,
+	EmgStopped_Out => FIO.bRedLight,
+
+	Ctrl_Plant := Ctrl_data_Plant
+	);]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="6" Count="14" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
