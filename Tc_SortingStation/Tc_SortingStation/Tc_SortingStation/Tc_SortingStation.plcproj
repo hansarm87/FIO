@@ -27,9 +27,6 @@
     <Compile Include="DUTs\CM_Vision_UDT.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\Plant_CTRL.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="GVLs\FIO.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
@@ -50,16 +47,22 @@
     <Compile Include="POUs\ControlModules\CM_VisionSensor.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\EquipmentModules\FB_Conveyor.TcPOU">
+    <Compile Include="POUs\EquipmentModules\FBD\FB_ConveyorEntry_FBD.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\EquipmentModules\FB_Sorter.TcPOU">
+    <Compile Include="POUs\EquipmentModules\LAD\FB_Conveyor.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\EquipmentModules\LAD\FB_Sorter.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\EquipmentModules\ST\FB_ConveyorEntry_ST.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\EquipmentModules\ST\FB_ConveyorExit_ST.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\Unit\FB_Plant.TcPOU">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -68,11 +71,17 @@
     <Folder Include="GVLs" />
     <Folder Include="POUs\EquipmentModules" />
     <Folder Include="POUs\ControlModules" />
+    <Folder Include="POUs\EquipmentModules\LAD" />
+    <Folder Include="POUs\EquipmentModules\FBD" />
+    <Folder Include="POUs\EquipmentModules\ST" />
     <Folder Include="POUs\Unit" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>
   <ItemGroup>
+    <PlaceholderReference Include="PlantControl and CMs">
+      <DefaultResolution>PlantControl and CMs, * (ArmAutomation)</DefaultResolution>
+    </PlaceholderReference>
     <PlaceholderReference Include="Tc2_Standard">
       <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc2_Standard</Namespace>
@@ -80,6 +89,32 @@
     <PlaceholderReference Include="Tc2_System">
       <DefaultResolution>Tc2_System, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc2_System</Namespace>
+      <Parameters>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>TABLE_UPPER_BOUND</Key>
+          <Value>15</Value>
+        </Parameter>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>STRING_LENGTH_EXP</Key>
+          <Value>255</Value>
+        </Parameter>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>STRING_LENGTH_ADDRESS</Key>
+          <Value>20</Value>
+        </Parameter>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>STRING_LENGTH_COMMENT</Key>
+          <Value>255</Value>
+        </Parameter>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>STRING_LENGTH_OUTSTRING</Key>
+          <Value>255</Value>
+        </Parameter>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>TABLE_SHOW_VALID_ITEMS</Key>
+          <Value>FALSE</Value>
+        </Parameter>
+      </Parameters>
     </PlaceholderReference>
     <PlaceholderReference Include="Tc3_Module">
       <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>

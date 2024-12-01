@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <DUT Name="Udt_PlantControl_Mode_2" Id="{7375d448-a3e6-4fef-8c3a-42f1227426f1}">
+    <Declaration><![CDATA[TYPE Udt_PlantControl_Mode_2 :
+STRUCT
+	Startet_Out : BOOL;
+	Stopped_Out : BOOL;
+	Reset_Out : BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

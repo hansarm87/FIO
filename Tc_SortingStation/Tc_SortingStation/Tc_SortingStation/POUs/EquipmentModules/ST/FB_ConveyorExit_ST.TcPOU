@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="FB_ConveyorExit_ST" Id="{583597d2-ef3e-4a01-936b-7b8cd5bd8267}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_ConveyorExit_ST
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	rTrigExit : Tc2_Standard.R_TRIG;
+	ExitTrigger : BOOL;
+	ExitEdgeDetected : BOOL;
+	
+	step : INT;
+END_VAR
+VAR_IN_OUT
+	control_data : PlantAndCMs.Udt_PlantControl_Mode_1;
+	
+	control_data_vision : CM_Vision_UDT;
+	control_data_Conveyor2 : CM_DO_UDT;
+	
+	control_data_sorter1 : CM_DO_UDT;
+	control_data_sorter2 : CM_DO_UDT;
+	control_data_sorter3 : CM_DO_UDT;
+	
+	control_data_atExit : CM_DIN_UDT;
+END_VAR
+
+	
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[rTrigExit(CLK := ExitTrigger, Q => ExitEdgeDetected);
+
+CASE step OF 
+	0 : // Init
+	IF control_data.Auto_Out AND control_data.Startet_Out THEN
+		step := 1;
+	END_IF
+	
+	1: // wait for ready signal from ceonveyor entry
+	
+	
+	IF GVL.readyForSorting THEN
+		step := 2;
+	END_IF
+	
+	2 : // check for GVL. which brick and act accordingly
+	IF GVL.BLUE_TOP OR GVL.GREEN_TOP THEN
+		step := 5;
+	ELSIF GVL.BLUE_MIDDLE OR GVL.GREEN_MIDDLE THEN
+		step := 10;
+	ELSIF GVL.GREEN_BOTTOM OR GVL.BLUE_BOTTOM THEN
+		step := 15;
+		
+	END_IF
+	
+	5:
+		GVL.BLUE_TOP := FALSE;
+		GVL.BLUE_BOTTOM := FALSE;
+		GVL.BLUE_MIDDLE := FALSE;
+		GVL.GREEN_TOP := FALSE;
+		GVL.GREEN_BOTTOM := FALSE;
+		GVL.GREEN_MIDDLE := FALSE;
+		IF ExitEdgeDetected THEN
+			step := 1;
+			GVL.SortingDone := TRUE;
+		END_IF
+	10:
+		GVL.BLUE_TOP := FALSE;
+		GVL.BLUE_BOTTOM := FALSE;
+		GVL.BLUE_MIDDLE := FALSE;
+		GVL.GREEN_TOP := FALSE;
+		GVL.GREEN_BOTTOM := FALSE;
+		GVL.GREEN_MIDDLE := FALSE;
+		IF ExitEdgeDetected THEN
+			step := 1;
+			GVL.SortingDone := TRUE;
+		END_IF
+	15:
+		GVL.BLUE_TOP := FALSE;
+		GVL.BLUE_BOTTOM := FALSE;
+		GVL.BLUE_MIDDLE := FALSE;
+		GVL.GREEN_TOP := FALSE;
+		GVL.GREEN_BOTTOM := FALSE;
+		GVL.GREEN_MIDDLE := FALSE;
+		IF ExitEdgeDetected THEN
+			step := 1;
+			GVL.SortingDone := TRUE;
+		END_IF
+	 
+END_CASE
+
+ExitTrigger := control_data_atExit.AutoHigh; 
+
+control_data_Sorter1.PO_HighCommand := step = 5;
+control_data_sorter2.PO_HighCommand := step = 10;
+control_data_sorter3.PO_HighCommand := step = 15;
+
+control_data_Conveyor2.PO_HighCommand := step = 5 OR step = 10 OR step = 15; ]]></ST>
+    </Implementation>
+    <LineIds Name="FB_ConveyorExit_ST">
+      <LineId Id="61" Count="1" />
+      <LineId Id="34" Count="3" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="102" Count="1" />
+      <LineId Id="142" Count="0" />
+      <LineId Id="105" Count="0" />
+      <LineId Id="148" Count="0" />
+      <LineId Id="106" Count="1" />
+      <LineId Id="39" Count="2" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="52" Count="1" />
+      <LineId Id="198" Count="4" />
+      <LineId Id="160" Count="0" />
+      <LineId Id="57" Count="0" />
+      <LineId Id="63" Count="0" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="64" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="155" Count="4" />
+      <LineId Id="149" Count="0" />
+      <LineId Id="66" Count="1" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="65" Count="0" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="167" Count="4" />
+      <LineId Id="166" Count="0" />
+      <LineId Id="69" Count="1" />
+      <LineId Id="73" Count="0" />
+      <LineId Id="68" Count="0" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="140" Count="1" />
+      <LineId Id="134" Count="0" />
+      <LineId Id="133" Count="0" />
+      <LineId Id="135" Count="1" />
+      <LineId Id="138" Count="0" />
+      <LineId Id="137" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

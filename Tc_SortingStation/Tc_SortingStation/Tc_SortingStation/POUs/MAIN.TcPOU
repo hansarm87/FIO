@@ -3,13 +3,18 @@
   <POU Name="MAIN" Id="{54fc3697-1197-40f3-acf2-4a0b47230f51}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
+	
 	//FBs
-	fbPlant: FB_Plant;
-	Ctrl_data_plant : Plant_CTRL;
+	fbPlantControl : PlantAndCMs.FB_PlantControl_mode_1;
+	Ctrl_data_Plant : PlantAndCMs.Udt_PlantControl_Mode_1;
 	
-	fbConveyorEntry : FB_Conveyor;
+	//Equipment modules structured IN LADDER
+	LAD_fbConveyorEntry : FB_Conveyor;
+	LAD_fbSorter : FB_Sorter;
 	
-	fbSorter : FB_Sorter;
+	//Equipment modules structured in ST
+	ST_fbConveyorEntry : FB_ConveyorEntry_ST;
+	ST_fbConveyorExit : FB_ConveyorExit_ST;
 	
 	// Control modules call
 	cmVision : CM_VisionSensor;
@@ -45,29 +50,31 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[
-fbPlant(
-	bAuto_IN:= FIO.bAuto, 
-	bManual_IN:= FIO.bManual,
-	bStart_IN := FIO.bStart,
-	bStop_IN := FIO.bStop,
-	bReset_IN := FIO.bReset,
-	bEmgStop_IN := FIO.bEmgStop,
- 
-	bAuto_OUT=> , 
-	bManual_OUT=> ,
- 
-	PlantCtrl:= Ctrl_data_plant);
+
+fbPlantControl(
+	on_in := TRUE,
+	Auto_In := PlantAndCMs.FIO.bAuto,
+	Manual_In := PlantAndCMs.FIO.bManual,
 	
-IF fbPlant.bEmgStop_IN THEN
-	fbConveyorEntry(
+	EmgStop_In := PlantAndCMs.FIO.bEmgStop,
+	Start_In := PlantAndCMs.FIO.bStart,
+	Stop_In := PlantAndCMs.FIO.bStop, 
+	Reset_In := PlantAndCMs.FIO.bReset,
+	
+	Ctrl_Plant := Ctrl_data_Plant
+);
+	
+
+LAD_fbConveyorEntry(
 		control_data := Ctrl_data_plant,
+		
 		control_data_vision := Ctrl_data_vision,
 		control_data_Conveyor1 := Ctrl_data_Conveyor1,
 		control_data_StopBlade := crtl_data_StopBlade,
 		control_data_emitter := ctrl_data_emitter
 		);	
 	
-	fbSorter(
+LAD_fbSorter(
 		control_data := Ctrl_data_plant,
 		control_data_vision := Ctrl_data_vision,
 		control_data_Conveyor2 := Ctrl_data_Conveyor2,
@@ -77,9 +84,28 @@ IF fbPlant.bEmgStop_IN THEN
 		control_data_atExit := Ctrl_data_exit,
 	
 	);	
-END_IF	
 
+(*
+ST_fbConveyorEntry(
+		control_data := Ctrl_data_plant,
+		
+		control_data_vision := Ctrl_data_vision,
+		control_data_Conveyor1 := Ctrl_data_Conveyor1,
+		control_data_StopBlade := crtl_data_StopBlade,
+		control_data_emitter := ctrl_data_emitter
+		);	
 
+ST_fbConveyorExit(
+		control_data := Ctrl_data_plant,
+		control_data_vision := Ctrl_data_vision,
+		control_data_Conveyor2 := Ctrl_data_Conveyor2,
+		control_data_sorter1 := Crtl_data_sorter1,
+		control_data_sorter2 := Crtl_data_sorter2,
+		control_data_sorter3 := Crtl_data_sorter3,
+		control_data_atExit := Ctrl_data_exit
+		);
+*)
+		
 
 //// CM Calls
 cmConveyor1( 
@@ -129,18 +155,23 @@ cmEmitter(
 	);]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
+      <LineId Id="409" Count="0" />
       <LineId Id="252" Count="0" />
-      <LineId Id="14" Count="2" />
-      <LineId Id="25" Count="2" />
-      <LineId Id="251" Count="0" />
-      <LineId Id="28" Count="0" />
-      <LineId Id="17" Count="1" />
-      <LineId Id="29" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="576" Count="0" />
+      <LineId Id="415" Count="1" />
+      <LineId Id="418" Count="0" />
+      <LineId Id="417" Count="0" />
+      <LineId Id="412" Count="2" />
+      <LineId Id="411" Count="0" />
       <LineId Id="7" Count="0" />
+      <LineId Id="403" Count="0" />
       <LineId Id="46" Count="0" />
       <LineId Id="19" Count="0" />
       <LineId Id="255" Count="0" />
-      <LineId Id="257" Count="2" />
+      <LineId Id="257" Count="0" />
+      <LineId Id="404" Count="0" />
+      <LineId Id="258" Count="1" />
       <LineId Id="261" Count="0" />
       <LineId Id="359" Count="0" />
       <LineId Id="262" Count="0" />
@@ -150,9 +181,18 @@ cmEmitter(
       <LineId Id="273" Count="0" />
       <LineId Id="254" Count="0" />
       <LineId Id="253" Count="0" />
+      <LineId Id="465" Count="0" />
+      <LineId Id="460" Count="0" />
+      <LineId Id="468" Count="5" />
+      <LineId Id="467" Count="0" />
       <LineId Id="163" Count="0" />
       <LineId Id="167" Count="0" />
+      <LineId Id="476" Count="5" />
+      <LineId Id="475" Count="0" />
+      <LineId Id="482" Count="0" />
+      <LineId Id="528" Count="0" />
       <LineId Id="59" Count="0" />
+      <LineId Id="529" Count="0" />
       <LineId Id="51" Count="0" />
       <LineId Id="50" Count="0" />
       <LineId Id="52" Count="0" />

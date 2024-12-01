@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="FB_ConveyorEntry_ST" Id="{f2d86c63-254e-4119-8c51-2f80b74ae540}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_ConveyorEntry_ST
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	step : INT;
+	RtrigInitTrigger : R_TRIG;
+	initTrigger : BOOL := TRUE;
+	
+	eMitterTimer : Tc2_Standard.TP;
+	startEmitting : BOOL;
+	
+END_VAR
+VAR_IN_OUT
+	control_data : PlantAndCMs.Udt_PlantControl_Mode_1;
+	
+	control_data_vision : CM_Vision_UDT;
+	control_data_Conveyor1 : CM_DO_UDT;
+	
+	control_data_StopBlade : CM_DO_UDT;
+	control_data_emitter : CM_DO_UDT;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[RtrigInitTrigger(CLK :=initTrigger);
+
+eMitterTimer(IN := StartEmitting, pt := T#0.2S);
+
+
+CASE step OF 
+	0 : // Init
+	
+		IF control_data.Auto_Out THEN
+			initTrigger := FALSE;
+			step := 1;
+		END_IF
+	
+	1: // Step 1 start machine
+		
+		IF control_data.Startet_Out THEN
+			initTrigger := TRUE;
+			step := 2;
+		END_IF
+	2:			
+		
+		IF control_data_vision.PO_PV = 0 THEN
+			startEmitting := TRUE;
+			step := 5;
+		END_IF
+	
+	5: 
+		startEmitting := FALSE;
+		GVL.readyForSorting := FALSE;
+		GVL.SortingDone := FALSE;
+		
+		IF control_data_vision.PO_PV = 1 THEN
+			GVL.BLUE_TOP := TRUE;
+			GVL.BLUE_BOTTOM := FALSE;
+			GVL.BLUE_MIDDLE := FALSE;
+			GVL.GREEN_TOP := FALSE;
+			GVL.GREEN_BOTTOM := FALSE;
+			GVL.GREEN_MIDDLE := FALSE;
+			step := 11;
+		END_IF
+		IF control_data_vision.PO_PV = 2 THEN
+			GVL.BLUE_TOP := FALSE;
+			GVL.BLUE_BOTTOM := TRUE;
+			GVL.BLUE_MIDDLE := FALSE;
+			GVL.GREEN_TOP := FALSE;
+			GVL.GREEN_BOTTOM := FALSE;
+			GVL.GREEN_MIDDLE := FALSE;
+			step := 11;
+		END_IF
+		IF control_data_vision.PO_PV = 3 THEN
+			GVL.BLUE_TOP := FALSE;
+			GVL.BLUE_BOTTOM := FALSE;
+			GVL.BLUE_MIDDLE := TRUE;
+			GVL.GREEN_TOP := FALSE;
+			GVL.GREEN_BOTTOM := FALSE;
+			GVL.GREEN_MIDDLE := FALSE;
+			step := 11;
+		END_IF
+		IF control_data_vision.PO_PV = 4 THEN
+			GVL.BLUE_TOP := FALSE;
+			GVL.BLUE_BOTTOM := FALSE;
+			GVL.BLUE_MIDDLE := FALSE;
+			GVL.GREEN_TOP := TRUE;
+			GVL.GREEN_BOTTOM := FALSE;
+			GVL.GREEN_MIDDLE := FALSE;
+			step := 11;
+		END_IF
+		IF control_data_vision.PO_PV = 5 THEN
+			GVL.BLUE_TOP := FALSE;
+			GVL.BLUE_BOTTOM := FALSE;
+			GVL.BLUE_MIDDLE := FALSE;
+			GVL.GREEN_TOP := FALSE;
+			GVL.GREEN_BOTTOM := TRUE;
+			GVL.GREEN_MIDDLE := FALSE;
+			step := 11;
+		END_IF
+		IF control_data_vision.PO_PV = 6 THEN
+			GVL.BLUE_TOP := FALSE;
+			GVL.BLUE_BOTTOM := FALSE;
+			GVL.BLUE_MIDDLE := FALSE;
+			GVL.GREEN_TOP := FALSE;
+			GVL.GREEN_BOTTOM := FALSE;
+			GVL.GREEN_MIDDLE := TRUE;
+			step := 11;
+		END_IF
+		
+
+	11:
+		GVL.readyForSorting := TRUE;
+		
+		IF GVL.SortingDone THEN
+			GVL.BLUE_TOP := FALSE;
+			GVL.BLUE_BOTTOM := FALSE;
+			GVL.BLUE_MIDDLE := FALSE;
+			GVL.GREEN_TOP := FALSE;
+			GVL.GREEN_BOTTOM := FALSE;
+			GVL.GREEN_MIDDLE := FALSE;
+			
+			startEmitting := TRUE;
+			
+			step := 2;
+		END_IF
+		
+END_CASE
+
+
+control_data_emitter.PO_HighCommand := eMitterTimer.Q;
+
+control_data_Conveyor1.PO_HighCommand := control_data.Startet_Out;
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_ConveyorEntry_ST">
+      <LineId Id="168" Count="0" />
+      <LineId Id="369" Count="0" />
+      <LineId Id="238" Count="0" />
+      <LineId Id="237" Count="0" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="19" Count="1" />
+      <LineId Id="300" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="301" Count="0" />
+      <LineId Id="140" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="90" Count="0" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="302" Count="0" />
+      <LineId Id="355" Count="0" />
+      <LineId Id="82" Count="0" />
+      <LineId Id="343" Count="0" />
+      <LineId Id="352" Count="0" />
+      <LineId Id="344" Count="1" />
+      <LineId Id="423" Count="0" />
+      <LineId Id="346" Count="0" />
+      <LineId Id="79" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="353" Count="0" />
+      <LineId Id="260" Count="0" />
+      <LineId Id="359" Count="0" />
+      <LineId Id="261" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="206" Count="4" />
+      <LineId Id="175" Count="0" />
+      <LineId Id="185" Count="0" />
+      <LineId Id="176" Count="0" />
+      <LineId Id="179" Count="0" />
+      <LineId Id="211" Count="4" />
+      <LineId Id="180" Count="0" />
+      <LineId Id="186" Count="0" />
+      <LineId Id="178" Count="0" />
+      <LineId Id="182" Count="0" />
+      <LineId Id="216" Count="4" />
+      <LineId Id="183" Count="0" />
+      <LineId Id="187" Count="0" />
+      <LineId Id="181" Count="0" />
+      <LineId Id="189" Count="0" />
+      <LineId Id="221" Count="4" />
+      <LineId Id="190" Count="1" />
+      <LineId Id="188" Count="0" />
+      <LineId Id="193" Count="0" />
+      <LineId Id="226" Count="4" />
+      <LineId Id="194" Count="1" />
+      <LineId Id="192" Count="0" />
+      <LineId Id="197" Count="0" />
+      <LineId Id="231" Count="4" />
+      <LineId Id="198" Count="1" />
+      <LineId Id="196" Count="0" />
+      <LineId Id="184" Count="0" />
+      <LineId Id="148" Count="0" />
+      <LineId Id="239" Count="0" />
+      <LineId Id="367" Count="1" />
+      <LineId Id="149" Count="0" />
+      <LineId Id="372" Count="4" />
+      <LineId Id="371" Count="0" />
+      <LineId Id="377" Count="0" />
+      <LineId Id="366" Count="0" />
+      <LineId Id="205" Count="0" />
+      <LineId Id="150" Count="2" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="246" Count="0" />
+      <LineId Id="350" Count="0" />
+      <LineId Id="83" Count="0" />
+      <LineId Id="31" Count="2" />
+      <LineId Id="365" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -26,7 +26,16 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF bInit THEN
+      <ST><![CDATA[
+
+IF  PRG_PID_CALL.fbPlantControl.Reset_Out THEN
+	bInit := TRUE;
+	
+	FIO.rSetPoint := 0;
+	
+END_IF
+
+IF bInit THEN
 	(* init parameter struct *)
 	stCTRL_PID_PARAMS.tCtrlCycleTime		:= T#1000MS;
 	stCTRL_PID_PARAMS.tTaskCycleTime		:= T#100MS;
@@ -87,6 +96,13 @@ GVL.fOutToScope := fOut;
 FIO.rFillValve :=  fOut;]]></ST>
     </Implementation>
     <LineIds Name="PRG_FB_CTRL_PID">
+      <LineId Id="115" Count="1" />
+      <LineId Id="114" Count="0" />
+      <LineId Id="117" Count="0" />
+      <LineId Id="120" Count="0" />
+      <LineId Id="122" Count="0" />
+      <LineId Id="121" Count="0" />
+      <LineId Id="118" Count="1" />
       <LineId Id="3" Count="18" />
       <LineId Id="80" Count="10" />
       <LineId Id="79" Count="0" />

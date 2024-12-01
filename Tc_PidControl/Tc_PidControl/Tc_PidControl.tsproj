@@ -2,7 +2,7 @@
 <TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.60">
 	<DataTypes>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000001}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BIT</Name>
+			<Name GUID="{18071995-0000-0000-0000-002000000001}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BIT</Name>
 			<BitSize>1</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
@@ -11,7 +11,7 @@
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000006}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..5] OF BIT</Name>
+			<Name GUID="{18071995-0000-0000-0000-002000000006}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..5] OF BIT</Name>
 			<BitSize>6</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
@@ -20,7 +20,7 @@
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000005}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..4] OF BIT</Name>
+			<Name GUID="{18071995-0000-0000-0000-002000000005}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..4] OF BIT</Name>
 			<BitSize>5</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
@@ -57,22 +57,9 @@
 		</System>
 		<Plc>
 			<Project GUID="{2F5F91EE-19C1-4128-9DBD-087F8C24B8C8}" Name="Tc_PidControl" PrjFilePath="Tc_PidControl\Tc_PidControl.plcproj" TmcFilePath="Tc_PidControl\Tc_PidControl.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" CopyTmcToTarget="true" CopyTpyToTarget="false" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Tc_PidControl\Tc_PidControl.tmc" TmcHash="{B76DC1CE-957E-E62A-1529-20C327966284}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Tc_PidControl\Tc_PidControl.tmc" TmcHash="{FDD03D6B-0C0D-B15E-EC50-903A89CC8CC8}">
 					<Name>Tc_PidControl Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
-					<Vars VarGrpType="1">
-						<Name>CyclicTask100Ms Inputs</Name>
-						<Var>
-							<Name>IO.aiSpare02c</Name>
-							<Comment><![CDATA[ch3 0-10v  Legacy range			(0-32767)]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>IO.aiSpare02d</Name>
-							<Comment><![CDATA[ch4 0-20mA Extended range 		(0 -30518)]]></Comment>
-							<Type>INT</Type>
-						</Var>
-					</Vars>
 					<Vars VarGrpType="1" ContextId="1" AreaNo="16">
 						<Name>PlcTask Inputs</Name>
 						<Var>
@@ -99,6 +86,16 @@
 						</Var>
 						<Var>
 							<Name>IO.aiSpare02b</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>IO.aiSpare02c</Name>
+							<Comment><![CDATA[ch3 0-10v  Legacy range			(0-32767)]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>IO.aiSpare02d</Name>
+							<Comment><![CDATA[ch4 0-20mA Extended range 		(0 -30518)]]></Comment>
 							<Type>INT</Type>
 						</Var>
 					</Vars>
@@ -765,8 +762,8 @@ Bit1: Value smaller than Limit2]]></Comment>
 	<Mappings>
 		<OwnerA Name="TIPC^Tc_PidControl^Tc_PidControl Instance">
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL3174)">
-				<Link VarA="CyclicTask100Ms Inputs^IO.aiSpare02c" VarB="AI Standard Channel 3^Value"/>
-				<Link VarA="CyclicTask100Ms Inputs^IO.aiSpare02d" VarB="AI Standard Channel 4^Value"/>
+				<Link VarA="PlcTask Inputs^IO.aiSpare02c" VarB="AI Standard Channel 3^Value"/>
+				<Link VarA="PlcTask Inputs^IO.aiSpare02d" VarB="AI Standard Channel 4^Value"/>
 			</OwnerB>
 		</OwnerA>
 	</Mappings>

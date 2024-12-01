@@ -9,12 +9,12 @@ VAR_GLOBAL
 //Sensor	Bool	FACTORY I/O (Reset)	498	FALSE
 bAtExit : BOOL;	//Sensor	Bool	At exit	2	TRUE
 
-bEmgStop : BOOL; //Sensor	Bool	Emergency stop	0	TRUE
-bStart : BOOL;	//Sensor	Bool	Start	1	FALSE
-bStop : BOOL;	//Sensor	Bool	Stop	3	TRUE
-bReset : BOOL;	//Sensor	Bool	Reset	4	FALSE
-bManual : BOOL;	//Sensor	Bool	Manual	5	TRUE
-bAuto : BOOL; 	//Sensor	Bool	Auto	6	FALSE
+//bEmgStop : BOOL; //Sensor	Bool	Emergency stop	0	TRUE
+//bStart : BOOL;	//Sensor	Bool	Start	1	FALSE
+//bStop : BOOL;	//Sensor	Bool	Stop	3	TRUE
+//bReset : BOOL;	//Sensor	Bool	Reset	4	FALSE
+//bManual : BOOL;	//Sensor	Bool	Manual	5	TRUE
+//bAuto : BOOL; 	//Sensor	Bool	Auto	6	FALSE
 
 //Sensor	Float	FACTORY I/O (Time Scale)	240	0
 iVisionSensor : DINT;	//Sensor	Int	Vision sensor	0	0

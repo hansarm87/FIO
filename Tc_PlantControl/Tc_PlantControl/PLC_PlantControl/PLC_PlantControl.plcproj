@@ -16,9 +16,28 @@
     <Implicit_KindOfTask>{290d6412-edb1-465c-a150-6aab2c95e5f2}</Implicit_KindOfTask>
     <Implicit_Jitter_Distribution>{8ca62137-9bec-43be-baf2-a6dfe3e2dceb}</Implicit_Jitter_Distribution>
     <LibraryReferences>{29bfdbd8-1ba0-4650-9eb2-cc9b77062475}</LibraryReferences>
+    <Company>ArmAutomation</Company>
+    <Released>false</Released>
+    <Title>PlantControl and CMs</Title>
+    <ProjectVersion>0.1.0.0</ProjectVersion>
+    <DefaultNamespace>PlantAndCMs</DefaultNamespace>
+    <Description>This library hold functionality for a control structure and Control modules</Description>
+    <LibraryCategories>
+      <LibraryCategory xmlns="">
+        <Id>{2a7dddca-f56c-480b-ae37-fd531d25fc12}</Id>
+        <Version>1.0.0.0</Version>
+        <DefaultName>PlantControlAndCmLibrary</DefaultName>
+      </LibraryCategory>
+    </LibraryCategories>
+    <SelectedLibraryCategories>
+      <Id xmlns="">{2a7dddca-f56c-480b-ae37-fd531d25fc12}</Id>
+    </SelectedLibraryCategories>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="DUTs\Udt_PlantControl_Out.TcDUT">
+    <Compile Include="DUTs\Udt_PlantControl_Mode_1.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Udt_PlantControl_Mode_2.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GVLs\FIO.TcGVL">
@@ -28,19 +47,23 @@
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\FB_runApp.TcPOU">
+    <Compile Include="POUs\FB_PlantControl_mode_2.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\FB_PlantControl.TcPOU">
+    <Compile Include="POUs\FB_PlantControl_mode_1.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Version\Global_Version.TcGVL">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
+    <Folder Include="Version" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>
@@ -52,6 +75,32 @@
     <PlaceholderReference Include="Tc2_System">
       <DefaultResolution>Tc2_System, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc2_System</Namespace>
+      <Parameters>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>TABLE_UPPER_BOUND</Key>
+          <Value>15</Value>
+        </Parameter>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>STRING_LENGTH_EXP</Key>
+          <Value>255</Value>
+        </Parameter>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>STRING_LENGTH_ADDRESS</Key>
+          <Value>20</Value>
+        </Parameter>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>STRING_LENGTH_COMMENT</Key>
+          <Value>255</Value>
+        </Parameter>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>STRING_LENGTH_OUTSTRING</Key>
+          <Value>255</Value>
+        </Parameter>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>TABLE_SHOW_VALID_ITEMS</Key>
+          <Value>FALSE</Value>
+        </Parameter>
+      </Parameters>
     </PlaceholderReference>
     <PlaceholderReference Include="Tc3_Module">
       <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
