@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <GVL Name="GVL" Id="{5125a489-1dfe-4090-91c4-cd7586b23dfb}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	
+ mb_Input_Coils    :    ARRAY [0..255] OF BOOL;
+ mb_Output_Coils :    ARRAY [0..255] OF BOOL;
+ mb_Input_Registers :    ARRAY [0..255] OF WORD; // Modbus TCP master side function code = 04 (read only)
+ mb_Output_Registers :    ARRAY [0..255] OF WORD; // Modbus TCP master side function code = 03 & 16 (read/write)
+ 
+ iPackageSize : INT;
+ 
+ smallPackage : BOOL;
+ mediumPackage : BOOL;
+ largePackage : BOOL;
+ 
+ WeighingDone : BOOL;
+
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

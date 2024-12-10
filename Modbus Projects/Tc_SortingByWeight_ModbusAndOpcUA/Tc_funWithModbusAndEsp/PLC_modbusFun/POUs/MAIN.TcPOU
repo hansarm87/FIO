@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="MAIN" Id="{a7adb8ad-13f3-4f19-9d99-aac1ec4efb5e}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	fbPlant : PlantAndCMs.FB_PlantControl_mode_1;
+	udt_plant_data_control : PlantAndCMs.Udt_PlantControl_Mode_1;
+	
+	fbSortingByWeight : FB_SortingByWeight;
+	
+	fbExitConveyors : FB_ExitSortingConveyors;
+	
+	fbScaleTrigger : FB_ScaleTrigger;
+	fbExitLoadTrigger : FB_exitLoadTrigger;
+	fbExitConveyorTrigger : FB_exitConveyorTrigger;
+	
+	fbWeightSorter : FB_WeightSorter;
+	
+	startButton : BOOL;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[startButton := FALSE;
+
+IF GVL.mb_Output_Coils[1] THEN
+	startButton := TRUE;
+END_IF
+
+fbPlant(
+	Ctrl_Plant := udt_plant_data_control,
+	Auto_In := PlantAndCMs.FIO.bAuto,
+	 
+	Start_In := GVL.mb_Output_Coils[5],
+	
+	Stop_In := GVL.mb_Output_Coils[6],
+	EmgStop_In := PlantAndCMs.FIO.bEmgStop
+
+	);
+	
+	
+fbSortingByWeight(
+	control_data := udt_plant_data_control
+	);
+
+fbExitConveyors(
+	);
+
+
+fbScaleTrigger(
+	scaleEntry_input := FIO2.bAtScaleEntry,
+	scaleExit_input := FIO2.bAtScaleExit
+		);
+		
+fbExitLoadTrigger(
+	input_left := FIO2.bAtLeftEntry,
+	input_right := FIO2.bAtRightEntry,
+	input_forward := FIO2.bAtForwardEntry
+	
+	);
+fbExitConveyorTrigger(
+	inputLeft := FIO2.bAtExitLeft,
+	inputRight := FIO2.bAtExitRight,
+	inputForward := FIO2.bAtExitFront,	
+	);
+	
+	
+(*fbWeightSorter(
+	weight_input := FIO2.rWeight,
+	
+	small => GVL.smallPackage,
+	medium => GVL.mediumPackage,
+	large => GVL.largePackage
+	
+	
+	);*)]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="30" Count="1" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="28" Count="1" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="2" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="58" Count="2" />
+      <LineId Id="53" Count="1" />
+      <LineId Id="51" Count="1" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="38" Count="1" />
+      <LineId Id="129" Count="0" />
+      <LineId Id="73" Count="0" />
+      <LineId Id="135" Count="0" />
+      <LineId Id="128" Count="0" />
+      <LineId Id="127" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="74" Count="0" />
+      <LineId Id="124" Count="0" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="99" Count="7" />
+      <LineId Id="138" Count="5" />
+      <LineId Id="91" Count="0" />
+      <LineId Id="94" Count="0" />
+      <LineId Id="130" Count="2" />
+      <LineId Id="134" Count="0" />
+      <LineId Id="133" Count="0" />
+      <LineId Id="95" Count="0" />
+      <LineId Id="97" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

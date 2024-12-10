@@ -18,7 +18,7 @@
 		</System>
 		<Plc>
 			<Project GUID="{B76CFD27-9DCE-4781-A205-42540DD9F9B7}" Name="Tc_SortingStation" PrjFilePath="Tc_SortingStation\Tc_SortingStation.plcproj" TmcFilePath="Tc_SortingStation\Tc_SortingStation.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" CopyTmcToTarget="true" CopyTpyToTarget="false" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Tc_SortingStation\Tc_SortingStation.tmc" TmcHash="{1CD251AB-646A-068F-8F8C-3E3A4AACDA43}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Tc_SortingStation\Tc_SortingStation.tmc" TmcHash="{84BAE65C-1DA0-A7D3-CCB3-9F5ACDA5FA37}">
 					<Name>Tc_SortingStation Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Contexts>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <GVL Name="FIO2" Id="{9c192ebb-60d7-421b-9b16-91e312dcd64e}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	
+	//	Sensor	BOOL	FACTORY I/O (Reset)	498	FALSE
+	//	Sensor	Bool	FACTORY I/O (Paused)	497	FALSE
+	//	Sensor	Bool	FACTORY I/O (Running)	496	FALSE
+	//	Sensor	Bool	Stop	8	TRUE
+	//	Sensor	Bool	Start	7	FALSE
+	bAtScaleExit : BOOL;	//	Sensor	Bool	At scale exit	2	FALSE
+	//	Sensor	Bool	Emergency stop	6	TRUE
+	bAtScale : BOOL;	//	Sensor	Bool	At scale	0	FALSE
+	bAtExitFront : BOOL;	//	Sensor	Bool	At exit front	5	TRUE
+	bAtExitRight : BOOL;//	Sensor	Bool	At exit right	4	TRUE
+	bAtExitLeft : BOOL;//	Sensor	Bool	At exit left	3	TRUE
+	bAtScaleEntry : BOOL;//	Sensor	Bool	At scale entry	1	TRUE
+	//	Sensor	Bool	Reset	9	FALSE
+	//	Sensor	Bool	Manual	10	TRUE
+	//	Sensor	Bool	Auto	11	FALSE
+	bAtLeftEntry : BOOL;	//	Sensor	Bool	At left entry	12	FALSE
+	bAtRightEntry : BOOL;//	Sensor	Bool	At right entry	13	FALSE
+	bAtForwardEntry : BOOL;//	Sensor	Bool	At forward entry	14	FALSE
+	//	Sensor	Float	FACTORY I/O (Time Scale)	240	0
+	rWeight : REAL;//	Sensor	Float	Weight	0	0
+	//	Actuator	Bool	FACTORY I/O (Reset)	498	FALSE
+	//	Actuator	Bool	FACTORY I/O (Pause)	497	FALSE
+	//	Actuator	Bool	FACTORY I/O (Run)	496	FALSE
+	//	Actuator	Bool	Reset light	15	FALSE
+	//	Actuator	Bool	Stop light	14	FALSE
+	//	Actuator	Bool	Start light	13	FALSE
+	bConveyorLeft : BOOL;	//	Actuator	Bool	Left conveyor	8	FALSE
+	bConveyorFront : BOOL;	//	Actuator	Bool	Front conveyor	9	FALSE
+	bConveyorRight : BOOL;	//	Actuator	Bool	Right conveyor	7	FALSE
+	//	Actuator	Bool	Remover	12	TRUE
+	//	Actuator	Bool	Remover	10	TRUE
+	//	Actuator	Bool	Remover	11	TRUE
+	bSendRight : BOOL;	//	Actuator	Bool	Send right	6	FALSE
+	bSendLeft : BOOL;	//	Actuator	Bool	Send left	5	FALSE
+	bSendForward : BOOL;	//	Actuator	Bool	Send forward	4	FALSE
+	bEmitter : BOOL;	//	Actuator	Bool	Emitter	3	TRUE
+	bConveyorEntry : BOOL;//	Actuator	Bool	Entry conveyor	2	FALSE
+	bLoadScale : BOOL;//	Actuator	Bool	Load scale	0	FALSE
+	//	Actuator	Bool	-	1	FALSE
+	//	Actuator	Int	FACTORY I/O (Camera Position)	240	0
+	iLeftCount : INT;	//	Actuator	Int	Left count	3	0
+	iRightCount : INT;	//	Actuator	Int	Right count	2	0
+	iForwardCount : INT;	//	Actuator	Int	Forward count	1	0
+	//	Actuator	Int	Weight	0	0
+
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

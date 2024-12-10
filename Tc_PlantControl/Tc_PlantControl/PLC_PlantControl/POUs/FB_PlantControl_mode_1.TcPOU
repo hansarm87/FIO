@@ -528,7 +528,7 @@ END_VAR]]></Declaration>
                                   <v n="SymbolComment">""</v>
                                   <v n="Address">""</v>
                                   <o n="Flags" t="Flags">
-                                    <v n="Flags">1</v>
+                                    <v n="Flags">0</v>
                                     <v n="Fixed">true</v>
                                     <v n="Extensible">false</v>
                                   </o>
@@ -2256,7 +2256,7 @@ END_VAR]]></Declaration>
                       </o>
                       <o n="RValue" t="BoxTreeOperand">
                         <o n="Operand" t="Operand">
-                          <v n="Operand">"on_out"</v>
+                          <v n="Operand">"ON"</v>
                           <v n="Type">"BOOL"</v>
                           <v n="Comment">""</v>
                           <v n="SymbolComment">""</v>

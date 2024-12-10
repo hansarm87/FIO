@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.60">
-	<Project ProjectGUID="{437CD91B-CAAF-4FE8-BFD4-A04D41311C02}" Target64Bit="true" ShowHideConfigurations="#x6">
+	<Project ProjectGUID="{5B526F77-2F4E-4630-9E77-84EF9CB3557E}" Target64Bit="true" ShowHideConfigurations="#x6">
 		<System>
 			<Settings MaxCpus="8" NonWinCpus="1">
 				<Cpu CpuId="7"/>
@@ -8,6 +8,8 @@
 			<Licenses>
 				<Target>
 					<ManualSelect>{BDCC0070-42D5-49AE-ABF1-1D4434813D60}</ManualSelect>
+					<ManualSelect>{777F1598-583B-4503-99BB-7C02E0ABD97E}</ManualSelect>
+					<ManualSelect>{6952449D-F68C-49A2-ADE4-8639D85B33A4}</ManualSelect>
 				</Target>
 			</Licenses>
 			<Tasks>
@@ -17,9 +19,9 @@
 			</Tasks>
 		</System>
 		<Plc>
-			<Project GUID="{9BAD29FC-F813-4D72-8BD1-B187165478C2}" Name="PLC_PlantControl" PrjFilePath="PLC_PlantControl\PLC_PlantControl.plcproj" TmcFilePath="PLC_PlantControl\PLC_PlantControl.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" CopyTmcToTarget="true" CopyTpyToTarget="false" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC_PlantControl\PLC_PlantControl.tmc" TmcHash="{222DFB22-C27F-E74F-3051-3C6199B2B26A}">
-					<Name>PLC_PlantControl Instance</Name>
+			<Project GUID="{728B2F6C-52EF-4A65-A66A-D55C53771436}" Name="PLC_modbusFun" PrjFilePath="PLC_modbusFun\PLC_modbusFun.plcproj" TmcFilePath="PLC_modbusFun\PLC_modbusFun.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" CopyTmcToTarget="true" CopyTpyToTarget="false" SymbolicMapping="true">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC_modbusFun\PLC_modbusFun.tmc" TmcHash="{986DA668-D4C4-D7CB-E685-2D5DADF866C4}">
+					<Name>PLC_modbusFun Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Contexts>
 						<Context>
