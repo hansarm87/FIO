@@ -10,6 +10,16 @@ VAR_GLOBAL
 	fActualValueToScope : LREAL;
 	foutToScope : LREAL;
 	
+	outputDischargeValve : REAL;
+	scaledDisturbancePotmeter : REAL;
+	
+	StartStep5 : BOOL;
+	StartStep10 : BOOL;
+	StartStep15 : BOOL;
+	
+	setManual : BOOL;
+	setAuto : BOOL;
+	
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

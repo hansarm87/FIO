@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <DUT Name="stParamsForScaling" Id="{d18cc086-b6f4-4e56-8b31-bfb2853790b8}">
+    <Declaration><![CDATA[TYPE stParamsForScaling :
+STRUCT
+	
+    tCtrlCycleTime  : TIME := T#0ms; 
+    tTaskCycleTime  : TIME := T#0ms; 
+    fInMin          : REAL;
+    fInMax          : REAL;
+    fOutMin         : REAL;
+    fOutMax         : REAL;
+	
+END_STRUCT
+
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="PRG_FB_CTRL_EmptyTank" Id="{2f18b515-86aa-4369-8bd9-88bbf2fcab33}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM PRG_FB_CTRL_EmptyTank
+
+VAR
+	fSetpointValue					: LREAL;
+	fActualValue					: LREAL;
+	fManSyncValue					: LREAL;
+	bSync							: BOOL;
+
+	fOut							: LREAL;
+	bHold							: BOOL;
+
+	eMode							: E_CTRL_MODE;
+	stCTRL_PID_PARAMS				: ST_CTRL_PID_PARAMS;
+
+	eErrorId						: E_CTRL_ERRORCODES;
+	bError							: BOOL;
+	bARWactive						: BOOL;
+	
+	(* controller *)
+	fbCTRL_PID						: FB_CTRL_PID;
+	
+	bInit							: BOOL	:= TRUE;
+	
+	fbScalingDischargeValveInput : FB_ScaleIN;
+	
+	//Scaling output
+	fbScalingDischargeDisturbance : FB_ScaleOut;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF GVL.setManual THEN
+	eMode :=  4;	
+END_IF
+IF GVL.setAuto AND GVL.StartStep10 THEN
+	eMode :=  2;	
+ELSE
+	eMode :=  0;
+END_IF
+
+
+IF bInit THEN
+	(* init parameter struct *)
+	stCTRL_PID_PARAMS.tCtrlCycleTime		:= T#1000MS;	//used to control the actual sample time of the PID algorythm, must be = or > than the task cycle time
+	stCTRL_PID_PARAMS.tTaskCycleTime		:= T#100MS;		// must be the same as the cycletime configured in the task which the regulator is called in (CyclicTask100Ms)
+	stCTRL_PID_PARAMS.fKp					:= 5.0 ;			(* proportional gain Kp				*)
+	stCTRL_PID_PARAMS.tTn					:= T#20S;		(*  Tn								*)
+	stCTRL_PID_PARAMS.tTv					:= T#200MS;		(*  Tv								*)
+	stCTRL_PID_PARAMS.tTd					:= T#500MS;		(*  Td								*)
+	stCTRL_PID_PARAMS.fOutMaxLimit			:=  100.0;			(* maximum output limit			(for  fillValve)	*) 
+	stCTRL_PID_PARAMS.fOutMinLimit			:= 0.0;			(* minimum output limit			(for  fillValve)	*)
+
+	(* set the mode to ACTIVE --> normal operation *)
+	eMode := eCTRL_MODE_ACTIVE;
+
+	(* reset the init flag *)
+	bInit := FALSE;
+END_IF
+
+fActualValue :=  FIO.iPV; 	//FIO.rLevelMeter;
+fSetpointValue := FIO.iSP; //FIO.rSetPoint (0-10V Scaled to 0-300 cm)
+
+(* call controller *)
+fbCTRL_PID(		fSetpointValue		:= - 1.0 * fSetpointValue,
+				fActualValue		:= -1.0 * fActualValue, //feedback value (proces variable)
+				fManSyncValue		:= fManSyncValue, // controll fOut directly with 0-100 %?
+				bSync				:= bSync,
+				eMode				:= eMode,
+				bHold				:= bHold,
+				stParams			:= stCTRL_PID_PARAMS,
+				fOut				=> fOut, // output to PID
+				bARWactive			=> bARWactive,
+				eErrorId			=> eErrorId,
+				bError				=> bError
+				);
+
+
+(* copy var to scope var *)
+//GVL.fOutToScope := fOut;
+//FIO.rDischargeValve :=  fOut;
+
+fbScalingDischargeDisturbance( 
+	taskCycletime := T#100MS,
+	ctrlCycletime := T#100MS,
+	inMin := 0.0,
+	inMax := 100.0,
+	outMin := 0.0,
+	outMax := 10.0,
+	
+	inputForScaling := fOut,
+	
+	scaledOutput => FIO.rDischargeValve
+	);
+
+
+//Manually set discharge disturbance
+IF GVL.setManual THEN
+	fbScalingDischargeDisturbance( 
+	taskCycletime := T#100MS,
+	ctrlCycletime := T#100MS,
+	inMin := 0.0,
+	inMax := 100.0,
+	outMin := 0.0,
+	outMax := 10.0,
+	
+	inputForScaling := FIO.rDisturbanceDisplay,
+	
+	scaledOutput => FIO.rDischargeValve
+	);
+fbScalingDischargeValveInput(
+	taskCycletime := T#100MS,
+	ctrlCycletime := T#100MS,
+	inMin := 0.0,
+	inMax := 10.0,
+	outMin := 0.0,
+	outMax := 100,
+	
+	inputForScaling := FIO.rDisturbanceInput,
+	
+	scaledOutputInt => FIO.rDisturbanceDisplay
+	);
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="PRG_FB_CTRL_EmptyTank">
+      <LineId Id="175" Count="4" />
+      <LineId Id="181" Count="1" />
+      <LineId Id="180" Count="0" />
+      <LineId Id="169" Count="1" />
+      <LineId Id="32" Count="37" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="140" Count="0" />
+      <LineId Id="129" Count="10" />
+      <LineId Id="128" Count="0" />
+      <LineId Id="100" Count="0" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="102" Count="0" />
+      <LineId Id="101" Count="0" />
+      <LineId Id="105" Count="22" />
+      <LineId Id="103" Count="1" />
+      <LineId Id="88" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

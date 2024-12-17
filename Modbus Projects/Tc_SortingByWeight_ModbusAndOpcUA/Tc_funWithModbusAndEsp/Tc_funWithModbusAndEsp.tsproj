@@ -20,7 +20,7 @@
 		</System>
 		<Plc>
 			<Project GUID="{728B2F6C-52EF-4A65-A66A-D55C53771436}" Name="PLC_modbusFun" PrjFilePath="PLC_modbusFun\PLC_modbusFun.plcproj" TmcFilePath="PLC_modbusFun\PLC_modbusFun.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" CopyTmcToTarget="true" CopyTpyToTarget="false" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC_modbusFun\PLC_modbusFun.tmc" TmcHash="{986DA668-D4C4-D7CB-E685-2D5DADF866C4}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC_modbusFun\PLC_modbusFun.tmc" TmcHash="{4292EA68-D7A9-A2FA-EA19-C31AC62B352E}">
 					<Name>PLC_modbusFun Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Contexts>

@@ -7,6 +7,9 @@
     <RootNamespace>Tc_Scope_PID</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="YT Scope Project.svdx">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="YT Scope Project.tcscopex">
       <SubType>Content</SubType>
     </Content>

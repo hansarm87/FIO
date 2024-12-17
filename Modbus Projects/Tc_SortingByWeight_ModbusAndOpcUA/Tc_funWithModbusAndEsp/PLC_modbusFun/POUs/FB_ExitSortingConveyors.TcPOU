@@ -470,7 +470,7 @@ END_VAR
                                     <o>
                                       <v n="AttributeId">{a6b08bd8-b696-47e3-9cbf-7408b61c9ff8}</v>
                                       <o n="Value" t="StringValue">
-                                        <v n="Value">"_aStep0_entry"</v>
+                                        <v n="Value">""</v>
                                         <v n="DefaultValue">""</v>
                                       </o>
                                       <v n="Id">116L</v>

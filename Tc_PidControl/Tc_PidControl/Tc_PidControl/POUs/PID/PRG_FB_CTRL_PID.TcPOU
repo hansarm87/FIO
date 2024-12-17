@@ -3,7 +3,7 @@
   <POU Name="PRG_FB_CTRL_PID" Id="{ab4b9d68-903a-4dd7-8d89-3218bcdb26f1}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM PRG_FB_CTRL_PID
 VAR
-	fSetpointValue					: LREAL		:= 5.0;
+	fSetpointValue					: LREAL;
 	fActualValue					: LREAL;
 	fManSyncValue					: LREAL;
 	bSync							: BOOL;
@@ -23,28 +23,39 @@ VAR
 
 	bInit							: BOOL	:= TRUE;
 	fbTON							: TON;
+	
+	// Scaling input
+	
+	
+	fbScalingFillValve : FB_ScaleIN;
+	
+	
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[
-
-IF  PRG_PID_CALL.fbPlantControl.Reset_Out THEN
-	bInit := TRUE;
-	
-	FIO.rSetPoint := 0;
-	
+IF GVL.setManual THEN
+	eMode :=  4;	
 END_IF
+IF GVL.setAuto OR (GVL.StartStep5 AND GVL.StartStep10) THEN
+	eMode :=  2;
+ELSE
+	eMode :=  0;	
+END_IF
+
+
 
 IF bInit THEN
 	(* init parameter struct *)
-	stCTRL_PID_PARAMS.tCtrlCycleTime		:= T#1000MS;
-	stCTRL_PID_PARAMS.tTaskCycleTime		:= T#100MS;
-	stCTRL_PID_PARAMS.fKp					:= 2.0;			(* proportional gain Kp				*)
-	stCTRL_PID_PARAMS.tTn					:= T#1S;		(*  Tn								*)
+	stCTRL_PID_PARAMS.tCtrlCycleTime		:= T#500MS;	//used to control the actual sample time of the PID algorythm, must be = or > than the task cycle time
+	stCTRL_PID_PARAMS.tTaskCycleTime		:= T#100MS;		// must be the same as the cycletime configured in the task which the regulator is called in (CyclicTask100Ms)
+	stCTRL_PID_PARAMS.fKp					:= 5.0;			(* proportional gain Kp				*)
+	stCTRL_PID_PARAMS.tTn					:= T#100S;		(*  Tn								*)
 	stCTRL_PID_PARAMS.tTv					:= T#200MS;		(*  Tv								*)
-	stCTRL_PID_PARAMS.tTd					:= T#100MS;		(*  Td								*)
-	stCTRL_PID_PARAMS.fOutMaxLimit			:=  10.0;			(* maximum output limit				*)
-	stCTRL_PID_PARAMS.fOutMinLimit			:= -0.0;			(* minimum output limit				*)
+	stCTRL_PID_PARAMS.tTd					:= T#500MS;		(*  Td								*)
+	stCTRL_PID_PARAMS.fOutMaxLimit			:=  100.0;			(* maximum output limit			(for  fillValve)	*) 
+	stCTRL_PID_PARAMS.fOutMinLimit			:= -0.0;			(* minimum output limit			(for  fillValve)	*)
 
 	(* set the mode to ACTIVE --> normal operation *)
 	eMode := eCTRL_MODE_ACTIVE;
@@ -68,8 +79,8 @@ TYPE E_CTRL_MODE :
 END_TYPE
 *)
 
-fActualValue := FIO.rLevelMeter;
-fSetpointValue := FIO.rSetPoint;
+fActualValue :=  FIO.iPV; 	//FIO.rLevelMeter;
+fSetpointValue := FIO.iSP; //FIO.rSetPoint (0-10V Scaled to 0-300 cm)
 
 (* copy var to scope var *)
 GVL.fSetpointValueToScope 	:= fSetpointValue;
@@ -79,7 +90,7 @@ GVL.fActualValueToScope 	:= fActualValue;
 (* call controller *)
 fbCTRL_PID(		fSetpointValue		:= fSetpointValue,
 				fActualValue		:= fActualValue, //feedback value (proces variable)
-				fManSyncValue		:= fManSyncValue,
+				fManSyncValue		:= fManSyncValue, // controll fOut directly with 0-100 %?
 				bSync				:= bSync,
 				eMode				:= eMode,
 				bHold				:= bHold,
@@ -93,16 +104,32 @@ fbCTRL_PID(		fSetpointValue		:= fSetpointValue,
 
 (* copy var to scope var *)
 GVL.fOutToScope := fOut;
-FIO.rFillValve :=  fOut;]]></ST>
+FIO.rFillValve :=  fOut;
+
+GVL.outputDischargeValve := fOut;
+
+
+
+
+fbScalingFillValve( 
+	taskCycletime := T#100MS,
+	ctrlCycletime := T#100MS,
+	inMin := 0.0,
+	inMax := 100.0,
+	outMin := 0.0,
+	outMax := 10.0,
+	
+	inputForScaling := fOut,
+	
+	scaledOutputInt => FIO.rFillValve
+	);
+
+]]></ST>
     </Implementation>
     <LineIds Name="PRG_FB_CTRL_PID">
-      <LineId Id="115" Count="1" />
-      <LineId Id="114" Count="0" />
-      <LineId Id="117" Count="0" />
-      <LineId Id="120" Count="0" />
-      <LineId Id="122" Count="0" />
-      <LineId Id="121" Count="0" />
-      <LineId Id="118" Count="1" />
+      <LineId Id="316" Count="8" />
+      <LineId Id="303" Count="1" />
+      <LineId Id="119" Count="0" />
       <LineId Id="3" Count="18" />
       <LineId Id="80" Count="10" />
       <LineId Id="79" Count="0" />
@@ -110,9 +137,23 @@ FIO.rFillValve :=  fOut;]]></ST>
       <LineId Id="29" Count="0" />
       <LineId Id="76" Count="0" />
       <LineId Id="75" Count="0" />
-      <LineId Id="30" Count="21" />
+      <LineId Id="30" Count="3" />
+      <LineId Id="310" Count="0" />
+      <LineId Id="307" Count="0" />
+      <LineId Id="36" Count="15" />
       <LineId Id="2" Count="0" />
       <LineId Id="77" Count="0" />
+      <LineId Id="250" Count="0" />
+      <LineId Id="249" Count="0" />
+      <LineId Id="147" Count="0" />
+      <LineId Id="266" Count="0" />
+      <LineId Id="271" Count="0" />
+      <LineId Id="267" Count="0" />
+      <LineId Id="206" Count="0" />
+      <LineId Id="208" Count="9" />
+      <LineId Id="207" Count="0" />
+      <LineId Id="265" Count="0" />
+      <LineId Id="251" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

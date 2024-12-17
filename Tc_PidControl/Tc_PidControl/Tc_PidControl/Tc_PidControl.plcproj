@@ -21,6 +21,9 @@
     <Compile Include="CyclicTask100Ms.TcTTO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\stParamsForScaling.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GVLs\FIO.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
@@ -39,16 +42,26 @@
     <Compile Include="POUs\MAIN.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\PID\PRG_FB_CTRL_EmptyTank.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\PID\PRG_FB_CTRL_PID.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\PID\PRG_PID_CALL.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\Scaling\FB_ScaleIN.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Scaling\FB_ScaleOut.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
+    <Folder Include="POUs\Scaling" />
     <Folder Include="POUs\PID" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
