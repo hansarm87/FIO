@@ -57,7 +57,7 @@
 		</System>
 		<Plc>
 			<Project GUID="{2F5F91EE-19C1-4128-9DBD-087F8C24B8C8}" Name="Tc_PidControl" PrjFilePath="Tc_PidControl\Tc_PidControl.plcproj" TmcFilePath="Tc_PidControl\Tc_PidControl.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" CopyTmcToTarget="true" CopyTpyToTarget="false" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Tc_PidControl\Tc_PidControl.tmc" TmcHash="{3938221F-0C14-C493-DB41-717FAFB7C5AD}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Tc_PidControl\Tc_PidControl.tmc" TmcHash="{49B06774-5C7F-10CE-9C09-95D9AA246E5D}">
 					<Name>Tc_PidControl Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1" ContextId="1" AreaNo="16">

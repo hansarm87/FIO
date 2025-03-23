@@ -4,158 +4,16 @@
   <FileName></FileName>
   <Children>
     <Node>
-      <Title>YT Scope Project</Title>
+      <Title>YT Scope Project.svdx</Title>
       <Expanded>False</Expanded>
-      <FileName>C:\Users\hansa\OneDrive\Dokumenter\FIO_WorkSpace\FIO\Tc_PidControl\Tc_Scope_PID\YT Scope Project.svdx</FileName>
-      <Children>
-        <Node>
-          <Title>DataPool</Title>
-          <Expanded>False</Expanded>
-          <FileName></FileName>
-          <Children>
-            <Node>
-              <Title>fActualValueToScope</Title>
-              <Expanded>False</Expanded>
-              <FileName></FileName>
-              <Children />
-            </Node>
-            <Node>
-              <Title>foutToScope</Title>
-              <Expanded>False</Expanded>
-              <FileName></FileName>
-              <Children />
-            </Node>
-            <Node>
-              <Title>fSetpointValueToScope</Title>
-              <Expanded>False</Expanded>
-              <FileName></FileName>
-              <Children />
-            </Node>
-          </Children>
-        </Node>
-        <Node>
-          <Title>YT Chart (1)</Title>
-          <Expanded>False</Expanded>
-          <FileName></FileName>
-          <Children>
-            <Node>
-              <Title>Axis PIS Ctrl Process value</Title>
-              <Expanded>False</Expanded>
-              <FileName></FileName>
-              <Children>
-                <Node>
-                  <Title>fActualValueToScope</Title>
-                  <Expanded>False</Expanded>
-                  <FileName></FileName>
-                  <Children />
-                </Node>
-                <Node>
-                  <Title>fSetpointValueToScope</Title>
-                  <Expanded>False</Expanded>
-                  <FileName></FileName>
-                  <Children />
-                </Node>
-              </Children>
-            </Node>
-            <Node>
-              <Title>Axis PID Ctrl Output</Title>
-              <Expanded>False</Expanded>
-              <FileName></FileName>
-              <Children>
-                <Node>
-                  <Title>foutToScope</Title>
-                  <Expanded>False</Expanded>
-                  <FileName></FileName>
-                  <Children />
-                </Node>
-              </Children>
-            </Node>
-          </Children>
-        </Node>
-        <Node>
-          <Title>Trigger</Title>
-          <Expanded>False</Expanded>
-          <FileName></FileName>
-          <Children />
-        </Node>
-      </Children>
+      <FileName></FileName>
+      <Children />
     </Node>
     <Node>
-      <Title>YT Scope Project</Title>
+      <Title>YT Scope Project.tcscopex</Title>
       <Expanded>False</Expanded>
-      <FileName>C:\Users\hansa\OneDrive\Dokumenter\FIO_WorkSpace\FIO\Tc_PidControl\Tc_Scope_PID\YT Scope Project.tcscopex</FileName>
-      <Children>
-        <Node>
-          <Title>DataPool</Title>
-          <Expanded>False</Expanded>
-          <FileName></FileName>
-          <Children>
-            <Node>
-              <Title>fActualValueToScope</Title>
-              <Expanded>False</Expanded>
-              <FileName></FileName>
-              <Children />
-            </Node>
-            <Node>
-              <Title>foutToScope</Title>
-              <Expanded>False</Expanded>
-              <FileName></FileName>
-              <Children />
-            </Node>
-            <Node>
-              <Title>fSetpointValueToScope</Title>
-              <Expanded>False</Expanded>
-              <FileName></FileName>
-              <Children />
-            </Node>
-          </Children>
-        </Node>
-        <Node>
-          <Title>YT Chart (1)</Title>
-          <Expanded>False</Expanded>
-          <FileName></FileName>
-          <Children>
-            <Node>
-              <Title>Axis PIS Ctrl Process value</Title>
-              <Expanded>False</Expanded>
-              <FileName></FileName>
-              <Children>
-                <Node>
-                  <Title>fActualValueToScope</Title>
-                  <Expanded>False</Expanded>
-                  <FileName></FileName>
-                  <Children />
-                </Node>
-                <Node>
-                  <Title>fSetpointValueToScope</Title>
-                  <Expanded>False</Expanded>
-                  <FileName></FileName>
-                  <Children />
-                </Node>
-              </Children>
-            </Node>
-            <Node>
-              <Title>Axis PID Ctrl Output</Title>
-              <Expanded>False</Expanded>
-              <FileName></FileName>
-              <Children>
-                <Node>
-                  <Title>foutToScope</Title>
-                  <Expanded>False</Expanded>
-                  <FileName></FileName>
-                  <Children />
-                </Node>
-              </Children>
-            </Node>
-          </Children>
-        </Node>
-        <Node>
-          <Title>Trigger</Title>
-          <Expanded>False</Expanded>
-          <FileName></FileName>
-          <Children />
-        </Node>
-      </Children>
+      <FileName></FileName>
+      <Children />
     </Node>
   </Children>
 </Node>

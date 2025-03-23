@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <DUT Name="Udt_CM_Sensor2State" Id="{2f6388ed-cb02-4321-a41b-1485be11ae1f}">
+    <Declaration><![CDATA[TYPE Udt_CM_Sensor2State :
+STRUCT
+	PI_ManualMode : BOOL;
+	PI_AutoHigh : BOOL;
+	PI_HMI_HAND : BOOL;
+	
+	PI_AlarmHighEnable : BOOL;
+	PI_AlarmLowEnable : BOOL;
+	
+	PI_Alarmslatched : BOOL;
+	PI_AlarmsAknowlegded : BOOL;
+	
+	
+	PO_HMI_HAND : BOOL;
+	PO_High : BOOL;
+
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -34,26 +34,54 @@
     </SelectedLibraryCategories>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="DUTs\Udt_PlantControl_Mode_1.TcDUT">
+    <Compile Include="DUTs\Udt_CM_Actuator2State.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\Udt_PlantControl_Mode_2.TcDUT">
+    <Compile Include="DUTs\Udt_CM_Actuator3State.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Udt_CM_ActuatorAnalog.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Udt_CM_Sensor2State.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Udt_CM_SensorAnalog.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Udt_PlantControl.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GVLs\FIO.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
+    <Compile Include="GVLs\OPC.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\FB_PlantControl_mode_2.TcPOU">
+    <Compile Include="POUs\CM\CM_Actuator2State.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\CM\CM_Actuator3State.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\CM\CM_ActuatorAnalog.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\CM\CM_Sensor2State.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\CM\CM_SensorAnalog.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\FB_PlantControl_mode_1.TcPOU">
+    <Compile Include="POUs\FB_PlantControl.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Version\Global_Version.TcGVL">
@@ -63,11 +91,16 @@
   <ItemGroup>
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
+    <Folder Include="POUs\CM" />
     <Folder Include="Version" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>
   <ItemGroup>
+    <PlaceholderReference Include="Tc2_ControllerToolbox">
+      <DefaultResolution>Tc2_ControllerToolbox, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_ControllerToolbox</Namespace>
+    </PlaceholderReference>
     <PlaceholderReference Include="Tc2_Standard">
       <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc2_Standard</Namespace>

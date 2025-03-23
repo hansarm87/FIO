@@ -3,8 +3,8 @@
   <POU Name="PRG_PID_CALL" Id="{e7fc84ae-b95c-477c-b1bf-9630c0dddc70}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM PRG_PID_CALL
 VAR
-	fbPlantControl : PlantAndCMs.FB_PlantControl_mode_2;
-	Udt_FbPlantControl : PlantAndCMs.Udt_PlantControl_Mode_2;
+	fbPlantControl : PlantAndCMs.FB_PlantControl;
+	Udt_FbPlantControl : PlantAndCMs.Udt_PlantControl;
 	
 	fbScalingSetpoint : FB_ScaleIN;
 	fbScalingLevelMeter : FB_ScaleIN;

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <DUT Name="Udt_PlantControl" Id="{243acc72-10d8-4386-bf88-a9535b66935e}">
+    <Declaration><![CDATA[TYPE Udt_PlantControl :
+STRUCT
+	
+	PI_Auto : BOOL;
+	PI_Manual : BOOL;
+	
+	
+	PI_Start : BOOL;
+	PI_Stop : BOOL := TRUE;
+	PI_Reset : BOOL;
+	PI_ResetEmgStop_5s :BOOL;
+	
+	PI_EmgStop : BOOL := TRUE;
+	
+	PO_Manual : BOOL;
+	
+	
+	PO_Auto : BOOL;
+	PO_Startet : BOOL;
+	PO_Stopped : BOOL;
+	PO_Reset : BOOL;
+	PO_ResetEmgStop_5s :BOOL;
+	
+	PO_EmgStopped : BOOL;
+	
+	PO_ON : BOOL;
+	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

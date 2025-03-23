@@ -4,7 +4,7 @@
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
 	
-	bEmgStop : BOOL := TRUE; //Sensor	Bool	Emergency stop	0	TRUE
+	(*bEmgStop : BOOL := TRUE; //Sensor	Bool	Emergency stop	0	TRUE
 	bStart : BOOL;	//Sensor	Bool	Start	1	FALSE
 	bStop : BOOL := TRUE;	//Sensor	Bool	Stop	3	TRUE
 	bReset : BOOL;	//Sensor	Bool	Reset	4	FALSE
@@ -13,9 +13,11 @@ VAR_GLOBAL
 	
 	bGreenLight : BOOL;
 	bYellowLight : BOOL;
-	bRedLight : BOOL;
+	bRedLight : BOOL;*)
+		
+	Plant_control : Udt_PlantControl;
 	
-
+	
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

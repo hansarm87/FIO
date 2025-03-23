@@ -3,8 +3,8 @@
   <POU Name="MAIN" Id="{581a0feb-1328-4d1d-92b6-fa21497d40e8}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
-	fbPlantControl : PlantAndCMs.FB_PlantControl_mode_1;
-	Udt_FbPlantControl : PlantAndCMs.Udt_PlantControl_Mode_1;
+	fbPlantControl : PlantAndCMs.FB_PlantControl;
+	//Udt_PlantControl : PlantAndCMs.FIO.Plant_control;
 	
 	testCase_step : INT := 0;
 	
@@ -15,15 +15,8 @@ END_VAR
       <ST><![CDATA[Timer_Step10(IN:= , PT:= T#50S, Q=> , ET=> );
 
 fbPlantControl(
-	Start_In := PlantAndCMs.FIO.bStart,
-	Stop_In := PlantAndCMs.FIO.bStop, 
-	Reset_In := PlantAndCMs.FIO.bReset,
-	EmgStop_In := PlantAndCMs.FIO.bEmgStop,
 	
-	Auto_In := PlantAndCMs.FIO.bAuto,
-	Manual_In := PlantAndCMs.FIO.bManual,
-	
-	Ctrl_Plant := Udt_FbPlantControl
+	Ctrl_Plant := PlantAndCMs.FIO.Plant_control
 	);
 
 IF fbPlantControl.Manual_Out AND NOT fbPlantControl.Auto_Out THEN
@@ -77,8 +70,7 @@ END_CASE]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
       <LineId Id="100" Count="1" />
-      <LineId Id="54" Count="4" />
-      <LineId Id="83" Count="2" />
+      <LineId Id="54" Count="0" />
       <LineId Id="59" Count="1" />
       <LineId Id="49" Count="0" />
       <LineId Id="74" Count="0" />

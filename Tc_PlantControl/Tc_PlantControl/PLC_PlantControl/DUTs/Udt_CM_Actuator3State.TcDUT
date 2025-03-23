@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <DUT Name="Udt_CM_Actuator3State" Id="{b47aaa9e-dc21-46d5-bc9b-b93433f2cc0f}">
+    <Declaration><![CDATA[TYPE Udt_CM_Actuator3State :
+STRUCT
+	PI_MANUAL :BOOL;
+	PI_AUTO : BOOL;
+	PI_HMI_HAND : BOOL; 
+	
+	PI_MANUAL_ON_1 : BOOL;
+	PI_MANUAL_ON_2 : BOOL;
+	
+	PI_AUTO_ON_1 : BOOL;
+	PI_AUTO_ON_2 : BOOL;
+	
+	PI_OFF : BOOL;
+	PI_Alarm_Enable : BOOL;
+	PI_CM_Alarm : BOOL;
+	PI_CM_Interlock : BOOL;
+	
+	PO_HMI_HAND_ON : BOOL;
+	PO_AUTO_ON : BOOL;
+	PO_ON_1 : BOOL;
+	PO_ON_2 : BOOL;
+	
+	PO_OUT_OFF :BOOL;
+	PO_CM_Alarm : BOOL;
+	
+	PO_CM_Interlocked : BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

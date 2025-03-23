@@ -3,12 +3,11 @@
   <POU Name="MAIN" Id="{afe816a1-7fba-460f-a8ae-1ac654733542}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
-	fbPlantControl_Mode_1 : FB_PlantControl_mode_1;
-	Ctrl_data_Plant_1 : Udt_PlantControl_Mode_1;
+	fbPlantControl : FB_PlantControl;
+	Ctrl_data_Plant_1 : Udt_PlantControl;
 	
-	fbPlantControl_Mode_2 : FB_PlantControl_mode_2;
-	Ctrl_data_Plant_2 : Udt_PlantControl_Mode_2;
 	
+	cmActuator2State : CM_Actuator2State;
 	
 END_VAR
 VAR_IN_OUT
@@ -16,45 +15,43 @@ VAR_IN_OUT
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[
-fbPlantControl_Mode_1(
+(*fbPlantControl(
 		//Set up variables to IO here
-		Auto_In := FIO.bAuto,
-		Manual_In := FIO.bManual,
 		
-		Start_In := FIO.bStart,
-		Stop_In := FIO.bStop,
-		EmgStop_In := FIO.bEmgStop,
-		Reset_In := FIO.bReset,
+		(*Auto_In := HMI.bAuto,
+		Manual_In := HMI.bManual,
 		
-		Startet_Out => FIO.bGreenLight,
-		Stopped_Out => FIO.bYellowLight,
-		EmgStopped_Out => FIO.bRedLight,
+		
+		Start_In := HMI.bStart,
+		Stop_In := HMI.bStop,
+		EmgStop_In := HMI.bEmgStop,
+		Reset_In := HMI.bReset,
+		
+		Startet_Out => HMI.bGreenLight,
+		Stopped_Out => HMI.bYellowLight,
+		EmgStopped_Out => HMI.bRedLight,*)
 	
-		Ctrl_Plant := Ctrl_data_Plant_1
+		Ctrl_Plant := FIO.Plant_control
 		);
 	
-
-
-	fbPlantControl_Mode_2(
-		Start_In := FIO.bStart,
-		Stop_In := FIO.bStop,
-		Reset_In := FIO.bReset,
-		Ctrl_Plant := Ctrl_data_Plant_2
-		);
-]]></ST>
+cmActuator2State(
+	CM_UDT_CTRL := OPC.cmActuator2State,
+	Plant_control := FIO.Plant_control
+	);
+	
+	*)]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
       <LineId Id="2" Count="0" />
-      <LineId Id="67" Count="15" />
-      <LineId Id="65" Count="1" />
-      <LineId Id="17" Count="0" />
-      <LineId Id="83" Count="0" />
-      <LineId Id="90" Count="0" />
-      <LineId Id="92" Count="0" />
-      <LineId Id="91" Count="0" />
-      <LineId Id="89" Count="0" />
-      <LineId Id="88" Count="0" />
+      <LineId Id="67" Count="1" />
+      <LineId Id="97" Count="0" />
+      <LineId Id="69" Count="1" />
+      <LineId Id="98" Count="0" />
+      <LineId Id="71" Count="11" />
+      <LineId Id="65" Count="0" />
       <LineId Id="84" Count="0" />
+      <LineId Id="110" Count="2" />
+      <LineId Id="124" Count="1" />
     </LineIds>
   </POU>
 </TcPlcObject>

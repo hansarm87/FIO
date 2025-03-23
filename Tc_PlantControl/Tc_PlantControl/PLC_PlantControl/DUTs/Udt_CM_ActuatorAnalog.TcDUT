@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <DUT Name="Udt_CM_ActuatorAnalog" Id="{dca6a64a-63ef-469b-ab55-ded02101b90d}">
+    <Declaration><![CDATA[TYPE Udt_CM_ActuatorAnalog :
+STRUCT
+	PI_MANUAL :BOOL;
+	PI_AUTO : BOOL;
+	PI_HMI_HAND : BOOL; 
+	
+	PI_MANUAL_ON_1 : BOOL;
+	PI_MANUAL_ON_2 : BOOL;
+	
+	PI_AUTO_ON_1 : BOOL;
+	PI_AUTO_ON_2 : BOOL;
+	
+	PI_OFF : BOOL;
+	
+	PO_HMI_HAND_ON : BOOL;
+	PO_AUTO_ON : BOOL;
+	PO_ON_1 : BOOL;
+	PO_ON_2 : BOOL;
+	
+	PO_OUT_OFF :BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

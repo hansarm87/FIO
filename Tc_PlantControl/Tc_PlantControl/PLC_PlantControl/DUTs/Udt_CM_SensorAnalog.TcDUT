@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <DUT Name="Udt_CM_SensorAnalog" Id="{c388f954-1c1d-4513-a80d-585f41677fdc}">
+    <Declaration><![CDATA[TYPE Udt_CM_SensorAnalog :
+STRUCT
+	PI_ManualMode : BOOL;
+	PI_AutoMode : BOOL;
+	
+	PI_AlarmHighEnable : BOOL;
+	PI_AlarmLowEnable : BOOL;
+	PI_AlarmHighHighEnable : BOOL;
+	PI_AlarmLowLowEnable : BOOL;
+	
+	PI_Alarmslatched : BOOL;
+	PI_AlarmsAknowlegded : BOOL;
+	
+	PI_PV :INT;
+	PI_PV_REAL : REAL;
+	
+	PI_PV_MAX : INT;
+	PI_PV_MIN : INT;
+
+	
+	PO_PV_REAL : REAL;
+	PO_PV_SCALED : REAL;
+	
+	
+	ALARM_HH : BOOL;
+	ALARM_H : BOOL;
+	ALARM_L : BOOL;
+	ALARM_LL : BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
