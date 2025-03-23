@@ -11,8 +11,11 @@ STRUCT
 	PI_AlarmHighHighEnable : BOOL;
 	PI_AlarmLowLowEnable : BOOL;
 	
-	PI_Alarmslatched : BOOL;
-	PI_AlarmsAknowlegded : BOOL;
+	PI_Alarm_Ack_HH : BOOL;
+	PI_Alarm_Ack_H : BOOL;
+	PI_Alarm_Ack_L : BOOL;
+	PI_Alarm_Ack_LL : BOOL;
+	
 	
 	PI_PV :INT;
 	PI_PV_REAL : REAL;
@@ -29,6 +32,8 @@ STRUCT
 	ALARM_H : BOOL;
 	ALARM_L : BOOL;
 	ALARM_LL : BOOL;
+	
+	
 END_STRUCT
 END_TYPE
 ]]></Declaration>

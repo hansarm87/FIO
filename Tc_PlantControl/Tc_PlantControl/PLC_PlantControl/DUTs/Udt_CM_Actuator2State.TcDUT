@@ -11,18 +11,25 @@ STRUCT
 	PI_AUTO_ON : BOOL;
 	
 	PI_OFF : BOOL;
-	PI_Alarm_Enable : BOOL;
-	PI_CM_Alarm : BOOL;
 	
-	PI_CM_Interlock : BOOL;
+	PI_AlarmHigh_Enable : BOOL;
+	PI_AlarmLow_Enable : BOOL;
+	
+	PI_Alarm_Ack_H : BOOL;
+	PI_Alarm_Ack_L : BOOL;
+	
+	PI_Interlock : BOOL;
+	PO_Interlocked : BOOL;
+	
+	PO_ALARM_H : BOOL;
+	PO_ALARM_L : BOOL;
 	
 	
 	PO_HMI_HAND_ON: BOOL;
 	PO_AUTO_ON : BOOL;
 	PO_ON : BOOL;
 	PO_OFF :BOOL;
-	PO_CM_Alarm : BOOL;
-	PO_CM_Interlocked : BOOL;
+	
 END_STRUCT
 END_TYPE
 ]]></Declaration>
