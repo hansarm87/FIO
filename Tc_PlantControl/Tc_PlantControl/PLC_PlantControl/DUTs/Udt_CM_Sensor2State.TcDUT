@@ -5,14 +5,18 @@
 STRUCT
 	PI_ManualMode : BOOL;
 	PI_AutoHigh : BOOL;
+	
 	PI_HMI_HAND : BOOL;
+	PI_HMI_HAND_ON : BOOL;
 	
 	PI_AlarmHighEnable : BOOL;
 	PI_AlarmLowEnable : BOOL;
 	
-	PI_Alarmslatched : BOOL;
-	PI_AlarmsAknowlegded : BOOL;
+	PI_Alarmdelay_H : INT;
+	PI_Alarmdelay_L : INT;
 	
+	PO_Alarm_H : BOOL;
+	PO_Alarm_L : BOOL;
 	
 	PO_HMI_HAND : BOOL;
 	PO_High : BOOL;
