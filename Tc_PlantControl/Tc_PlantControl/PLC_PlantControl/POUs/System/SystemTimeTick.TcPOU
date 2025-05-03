@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="SystemTimeTick" Id="{9c2a9c35-555a-4139-8bf0-7cebb4ce1fa5}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK SystemTimeTick
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	currentTicks : ULINT;
+    timeMs : ULINT;
+	timeS        : ULINT;  // seconds
+    timeM        : ULINT;  // minutes
+    timeH        : ULINT;  // hours
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[currentTicks := Tc2_System.F_GetSystemTime(); // returns system ticks
+
+timeMs := currentTicks / 10000;   // convert to milliseconds (1 tick = 100ns)
+timeS  := timeMs / 1000;                  // convert to seconds
+timeM  := timeS / 60;                     // convert to minutes
+timeH  := timeM / 60;                     // convert to hours
+]]></ST>
+    </Implementation>
+    <LineIds Name="SystemTimeTick">
+      <LineId Id="14" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="22" Count="2" />
+      <LineId Id="21" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

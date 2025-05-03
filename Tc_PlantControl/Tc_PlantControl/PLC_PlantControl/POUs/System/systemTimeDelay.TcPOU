@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="systemTimeDelay" Id="{aced55d1-560c-4812-a22f-5aa1b529dde2}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK systemTimeDelay
+VAR_INPUT
+    DelayTimeMs : ULINT;  // Delay time in milliseconds
+    Start       : BOOL;   // Start signal (must stay TRUE to complete delay)
+    Reset       : BOOL;   // Resets latched state and timer
+END_VAR
+VAR_OUTPUT
+    IsElapsed       : BOOL;   // Latches TRUE after timeout, until reset
+    RemainingTimeMs : ULINT;  // Countdown (0 if not running)
+END_VAR
+VAR
+    StartTime       : ULINT;
+    IsRunning       : BOOL;
+    ElapsedTimeMs   : ULINT;
+    StartEdge       : BOOL;
+    PrevStart       : BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// Detect rising edge of Start
+StartEdge := Start AND NOT PrevStart;
+PrevStart := Start;
+
+// Reset everything if Reset = TRUE
+IF Reset THEN
+    IsElapsed := FALSE;
+    IsRunning := FALSE;
+    RemainingTimeMs := 0;
+END_IF
+
+// If Start goes low during active timing, cancel and reset
+IF NOT Start AND IsRunning THEN
+    IsRunning := FALSE;
+    RemainingTimeMs := 0;
+END_IF
+
+// Start timer on rising edge of Start
+IF StartEdge AND NOT IsElapsed THEN
+    StartTime := F_GetSystemTime();
+    IsRunning := TRUE;
+END_IF
+
+// Timing logic
+IF IsRunning THEN
+    ElapsedTimeMs := (F_GetSystemTime() - StartTime) / 10000;
+
+    IF ElapsedTimeMs >= DelayTimeMs THEN
+        IsElapsed := TRUE;           // Latch output
+        IsRunning := FALSE;          // Stop counting
+        RemainingTimeMs := 0;
+    ELSE
+        RemainingTimeMs := DelayTimeMs - ElapsedTimeMs;
+    END_IF
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="systemTimeDelay">
+      <LineId Id="82" Count="33" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -4,6 +4,7 @@
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
 	//cmActuator2State : Udt_CM_Actuator2State;
+	Udt_PlantControl : Udt_PlantControl;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <DUT Name="Udt_PlantControl_SCADA" Id="{6b3457af-8a0a-44ea-8744-4d72ed98aa52}">
+    <Declaration><![CDATA[TYPE Udt_PlantControl_SCADA :
+STRUCT
+	PI_Auto : BOOL;
+	PI_Manual : BOOL;
+	
+	
+	PI_Start : BOOL;
+	PI_Stop : BOOL := TRUE;
+	PI_Reset : BOOL;
+	PI_ResetEmgStop_5s :BOOL;
+	
+	PI_EmgStop : BOOL := TRUE;
+	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

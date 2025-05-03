@@ -36,6 +36,8 @@ VAR_OUTPUT
 	PO_CM_Interlocked : BOOL;
 END_VAR
 VAR
+	alarmDelay_H : systemTimeDelay;
+	alarmDelay_L : systemTimeDelay;
 END_VAR
 VAR_IN_OUT
 	CM_UDT_CTRL : Udt_CM_Actuator3State;

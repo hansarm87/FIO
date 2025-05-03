@@ -17,7 +17,6 @@ VAR_GLOBAL
 		
 	Plant_control : Udt_PlantControl;
 	
-	
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

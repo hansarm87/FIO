@@ -14,8 +14,8 @@ VAR_INPUT
 	
 	PI_AlarmHighEnable : BOOL;
 	PI_AlarmLowEnable : BOOL;
-	PI_Alarmdelay_H : INT;
-	PI_Alarmdelay_L : INT;
+	PI_Alarmdelay_H : DINT;
+	PI_Alarmdelay_L : DINT;
 	
 	PI_Alarm_Condition_H : BOOL;
 	PI_Alarm_Condition_L : BOOL;
@@ -35,11 +35,14 @@ VAR
 	Alarm_limit_Exceeded_H : BOOL;
 	Alarm_limit_Exceeded_L : BOOL;
 	
-	prg_scan_H : INT; // used for alarm delay
-	prg_scan_L : INT; // used for alarm delay
+	prg_scan_H : DINT; // used for alarm delay
+	prg_scan_L : DINT; // used for alarm delay
 	
 	Alarm_Ack_H : BOOL;
 	Alarm_Ack_L : BOOL;
+	
+	alarmDelay_H : systemTimeDelay;
+	alarmDelay_L : systemTimeDelay;
 END_VAR
 VAR_IN_OUT
 	CM_UDT_CTRL : Udt_CM_Sensor2State;
@@ -884,7 +887,7 @@ END_VAR
                             <n />
                             <o>
                               <v n="Operand">"prg_scan_H"</v>
-                              <v n="Type">"INT"</v>
+                              <v n="Type">"DINT"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
                               <v n="Address">""</v>
@@ -1031,7 +1034,7 @@ END_VAR
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
                               <v n="Operand">"prg_scan_H"</v>
-                              <v n="Type">"INT"</v>
+                              <v n="Type">"DINT"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
                               <v n="Address">""</v>
@@ -1125,7 +1128,7 @@ END_VAR
                             <n />
                             <o>
                               <v n="Operand">"prg_scan_L"</v>
-                              <v n="Type">"INT"</v>
+                              <v n="Type">"DINT"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
                               <v n="Address">""</v>
@@ -1272,7 +1275,7 @@ END_VAR
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
                               <v n="Operand">"prg_scan_L"</v>
-                              <v n="Type">"INT"</v>
+                              <v n="Type">"DINT"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
                               <v n="Address">""</v>
@@ -1409,7 +1412,7 @@ END_VAR
                           <o>
                             <o n="Operand" t="Operand">
                               <v n="Operand">"prg_scan_H"</v>
-                              <v n="Type">"INT"</v>
+                              <v n="Type">"DINT"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
                               <v n="Address">""</v>
@@ -1428,7 +1431,7 @@ END_VAR
                           <o>
                             <o n="Operand" t="Operand">
                               <v n="Operand">"PI_Alarmdelay_H"</v>
-                              <v n="Type">"INT"</v>
+                              <v n="Type">"DINT"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
                               <v n="Address">""</v>
@@ -1549,7 +1552,7 @@ END_VAR
                           <o>
                             <o n="Operand" t="Operand">
                               <v n="Operand">"prg_scan_L"</v>
-                              <v n="Type">"INT"</v>
+                              <v n="Type">"DINT"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
                               <v n="Address">""</v>
@@ -1568,7 +1571,7 @@ END_VAR
                           <o>
                             <o n="Operand" t="Operand">
                               <v n="Operand">"PI_Alarmdelay_L"</v>
-                              <v n="Type">"INT"</v>
+                              <v n="Type">"DINT"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
                               <v n="Address">""</v>
@@ -1634,7 +1637,7 @@ END_VAR
                           <n />
                           <o>
                             <v n="Operand">"prg_scan_H"</v>
-                            <v n="Type">"INT"</v>
+                            <v n="Type">"DINT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
                             <v n="Address">""</v>
@@ -1745,7 +1748,7 @@ END_VAR
                           <n />
                           <o>
                             <v n="Operand">"prg_scan_L"</v>
-                            <v n="Type">"INT"</v>
+                            <v n="Type">"DINT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
                             <v n="Address">""</v>
@@ -1989,7 +1992,7 @@ END_VAR
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
                               <v n="Operand">"prg_scan_H"</v>
-                              <v n="Type">"INT"</v>
+                              <v n="Type">"DINT"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
                               <v n="Address">""</v>
@@ -2193,7 +2196,7 @@ END_VAR
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
                               <v n="Operand">"prg_scan_L"</v>
-                              <v n="Type">"INT"</v>
+                              <v n="Type">"DINT"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
                               <v n="Address">""</v>
