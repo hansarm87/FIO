@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <DUT Name="Udt_CM_AO_V2" Id="{6cc49795-b16d-4b9d-a62c-6a949adaf067}">
+    <Declaration><![CDATA[TYPE Udt_CM_AO_V2 :
+STRUCT
+	PI_MANUAL :BOOL;
+	PI_AUTO : BOOL;
+	PI_HMI_HAND : BOOL; 
+	
+	PI_MANUAL_ON_1 : BOOL;
+	PI_MANUAL_ON_2 : BOOL;
+	
+	PI_AUTO_ON_1 : BOOL;
+	PI_AUTO_ON_2 : BOOL;
+	
+	PI_INTERLOCK : BOOL;
+	
+	PI_OFF : BOOL;
+	
+	PO_HMI_HAND_ON : BOOL;
+	PO_AUTO_ON : BOOL;
+	PO_ON : BOOL;
+	
+	
+	PO_INTERLOCKED : BOOL;
+	
+	PO_OUT_OFF :BOOL;
+	
+	PI_Alarm_Ack_HH : BOOL;
+	PI_Alarm_Ack_H : BOOL;
+	PI_Alarm_Ack_L : BOOL;
+	PI_Alarm_Ack_LL : BOOL;
+	
+	PO_MODE : ENUM_MODE_HANDLER;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

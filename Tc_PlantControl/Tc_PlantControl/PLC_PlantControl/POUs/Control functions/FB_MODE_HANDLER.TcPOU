@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="FB_MODE_HANDLER" Id="{9d07baee-55ca-4d0f-b21b-4f7a27ed35b5}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_MODE_HANDLER
+VAR_INPUT
+	ModeRequest_Global : ENUM_MODE_HANDLER;
+    ModeRequest_Local  : ENUM_MODE_HANDLER;
+    EnableLocalOverride : BOOL := TRUE; // Optional
+END_VAR
+VAR_OUTPUT
+	FinalMode : ENUM_MODE_HANDLER;
+    ManualOverrideActive : BOOL;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[ 	(*
+	MODE_EMGSTOP := 0,
+    MODE_AUTO := 1,
+    MODE_MAN  := 2
+	*)
+
+IF EnableLocalOverride AND (ModeRequest_Local = ENUM_MODE_HANDLER.MODE_MAN) THEN
+    FinalMode := ENUM_MODE_HANDLER.MODE_MAN;
+    ManualOverrideActive := TRUE;
+ELSE
+    FinalMode := ModeRequest_Global;
+    ManualOverrideActive := FALSE;
+END_IF;
+
+// Safe fallback
+IF (FinalMode <> ENUM_MODE_HANDLER.MODE_AUTO) AND 
+   (FinalMode <> ENUM_MODE_HANDLER.MODE_MAN) THEN
+    FinalMode := ENUM_MODE_HANDLER.MODE_EMGSTOP;
+END_IF;
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_MODE_HANDLER">
+      <LineId Id="43" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="40" Count="2" />
+      <LineId Id="15" Count="12" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

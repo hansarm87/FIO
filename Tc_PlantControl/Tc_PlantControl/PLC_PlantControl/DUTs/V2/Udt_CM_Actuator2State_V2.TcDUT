@@ -1,36 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
-  <DUT Name="Udt_CM_Actuator2State" Id="{e1a01a7e-e03f-4361-bf76-13a6b244c793}">
-    <Declaration><![CDATA[TYPE Udt_CM_Actuator2State :
+  <DUT Name="Udt_CM_Actuator2State_V2" Id="{7cfb36b3-d937-4193-946d-600e9b3f4e31}">
+    <Declaration><![CDATA[TYPE Udt_CM_Actuator2State_V2 :
 STRUCT
 	PI_MANUAL :BOOL;
 	PI_AUTO : BOOL;
 	PI_HMI_HAND : BOOL;
 	
-	PI_MANUAL_ON : BOOL;
-	PI_AUTO_ON : BOOL;
-	
-	PI_OFF : BOOL;
-	
 	PI_AlarmHigh_Enable : BOOL;
 	PI_AlarmLow_Enable : BOOL;
+	
+	PI_Alarm_Condition_H : BOOL;
+	PI_Alarm_Condition_L : BOOL;
+	
+	PI_AlarmDelay_H : LREAL;
+	PI_AlarmDelay_L : LREAL;
 	
 	PI_Alarm_Ack_H : BOOL;
 	PI_Alarm_Ack_L : BOOL;
 	
 	PI_Interlock : BOOL;
-	PO_Interlocked : BOOL;
+	(*PO_Interlocked : BOOL;
 	
 	PO_ALARM_H : BOOL;
 	PO_ALARM_L : BOOL;
-	
 	
 	PO_HMI_HAND_ON: BOOL;
 	PO_AUTO_ON : BOOL;
 	PO_MANUAL_ON : BOOL;
 	PO_ON : BOOL;
 	PO_OFF :BOOL;
+	*)
 	
+	PO_MODE : ENUM_MODE_HANDLER;
 	
 END_STRUCT
 END_TYPE

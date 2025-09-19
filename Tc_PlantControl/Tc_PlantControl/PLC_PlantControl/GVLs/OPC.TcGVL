@@ -5,6 +5,8 @@
 VAR_GLOBAL
 	//cmActuator2State : Udt_CM_Actuator2State;
 	Udt_PlantControl : Udt_PlantControl;
+	
+	Plant_1_Control : Udt_PlantControl;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

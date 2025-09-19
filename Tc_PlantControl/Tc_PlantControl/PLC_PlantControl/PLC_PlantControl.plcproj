@@ -34,25 +34,37 @@
     </SelectedLibraryCategories>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="DUTs\Udt_CM_Actuator2State.TcDUT">
+    <Compile Include="DUTs\Control Function UDTs\ENUM_MODE_HANDLER.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\Udt_CM_Actuator3State.TcDUT">
+    <Compile Include="DUTs\V1\Udt_CM_Actuator2State.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\Udt_CM_ActuatorAnalog.TcDUT">
+    <Compile Include="DUTs\V1\Udt_CM_Actuator3State.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\Udt_CM_Sensor2State.TcDUT">
+    <Compile Include="DUTs\V1\Udt_CM_ActuatorAnalog.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\Udt_CM_SensorAnalog.TcDUT">
+    <Compile Include="DUTs\V1\Udt_CM_Sensor2State.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\Udt_PlantControl.TcDUT">
+    <Compile Include="DUTs\V1\Udt_CM_SensorAnalog.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\Udt_PlantControl_SCADA.TcDUT">
+    <Compile Include="DUTs\V1\Udt_PlantControl.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\V1\Udt_PlantControl_SCADA.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\V2\Udt_CM_Actuator2State_V2.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\V2\Udt_CM_AO_V2.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\V2\Udt_CM_Actuator3State_V2.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GVLs\FIO.TcGVL">
@@ -81,13 +93,49 @@
     <Compile Include="POUs\CM\CM_SensorAnalog.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\CM_V2\CM_Actuator2State_V2.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\CM_V2\CM_Actuator3State_V2.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\CM_V2\CM_AO_V2.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\CM_V2\CM_Sensor2State_V2.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\CM_V2\CM_SensorAnalog_V2.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Control functions\FB_MODE_HANDLER.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Control functions\FB_PID.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\EM\EM_Tank.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\FB_PlantControl.TcPOU">
+    <Compile Include="POUs\Plant Control\FB_PlantControl.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Plant Control\FB_PlantControl_V2.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Scaling\FB_ScaleIN_1.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Scaling\FB_ScaleOut_1.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\System\FB_ScaleIN.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\System\FB_ScaleOut.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\System\systemTimeDelay.TcPOU">
@@ -102,9 +150,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DUTs" />
+    <Folder Include="DUTs\Control Function UDTs" />
+    <Folder Include="DUTs\V1" />
+    <Folder Include="DUTs\V2" />
     <Folder Include="GVLs" />
     <Folder Include="POUs\CM" />
     <Folder Include="POUs\EM" />
+    <Folder Include="POUs\Control functions" />
+    <Folder Include="POUs\CM_V2" />
+    <Folder Include="POUs\Plant Control" />
+    <Folder Include="POUs\Scaling" />
     <Folder Include="POUs\System" />
     <Folder Include="Version" />
     <Folder Include="VISUs" />

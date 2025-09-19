@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <DUT Name="ENUM_MODE_HANDLER" Id="{27cbcf0c-7cd3-4a14-b062-87bf09cfcadc}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE ENUM_MODE_HANDLER :
+(
+    MODE_EMGSTOP := 0,
+    MODE_AUTO := 1,
+    MODE_MAN  := 2
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

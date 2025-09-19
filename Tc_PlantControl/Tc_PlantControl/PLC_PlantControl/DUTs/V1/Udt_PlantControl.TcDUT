@@ -28,6 +28,7 @@ STRUCT
 	
 	PO_ON : BOOL;
 	
+	PO_MODE : ENUM_MODE_HANDLER;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

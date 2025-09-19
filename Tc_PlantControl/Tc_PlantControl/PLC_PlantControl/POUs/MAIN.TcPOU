@@ -3,7 +3,7 @@
   <POU Name="MAIN" Id="{afe816a1-7fba-460f-a8ae-1ac654733542}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
-	
+	//Plant_Control : FB_PlantControl;
 END_VAR
 VAR_IN_OUT
 	

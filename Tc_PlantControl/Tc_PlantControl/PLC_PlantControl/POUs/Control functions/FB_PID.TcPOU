@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="FB_PID" Id="{f6235192-8461-4d31-9ee1-950363c54ebe}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_PID
+VAR_INPUT
+	Manual_mode : BOOL;
+	Auto_mode : BOOL;
+	
+	fSetpointValue					: LREAL;
+	fActualValue					: LREAL;
+	fManSyncValue					: LREAL;
+	bSync							: BOOL;
+	
+	IN_stCTRL_PID_PARAMS				: ST_CTRL_PID_PARAMS;
+END_VAR
+VAR_OUTPUT
+	fOut							: LREAL;
+	bHold							: BOOL;
+END_VAR
+VAR
+	eMode							: E_CTRL_MODE;
+	stCTRL_PID_PARAMS				: ST_CTRL_PID_PARAMS;
+	
+
+	eErrorId						: E_CTRL_ERRORCODES;
+	bError							: BOOL;
+	bARWactive						: BOOL;
+	
+	(* controller *)
+	fbCTRL_PID						: FB_CTRL_PID;
+
+	bInit							: BOOL	:= TRUE;
+	fbTON							: TON;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF Manual_mode THEN
+	eMode :=  4;
+END_IF
+IF Auto_mode THEN
+	eMode :=  2;
+ELSE
+	eMode :=  0;	
+END_IF
+
+IF bInit THEN
+	
+	stCTRL_PID_PARAMS := IN_stCTRL_PID_PARAMS;
+	(*
+	(* init parameter struct *)
+	stCTRL_PID_PARAMS.tCtrlCycleTime		:= T#500MS;	//used to control the actual sample time of the PID algorythm, must be = or > than the task cycle time
+	stCTRL_PID_PARAMS.tTaskCycleTime		:= T#100MS;		// must be the same as the cycletime configured in the task which the regulator is called in (CyclicTask100Ms)
+	stCTRL_PID_PARAMS.fKp					:= 5.0;			(* proportional gain Kp				*)
+	stCTRL_PID_PARAMS.tTn					:= T#100S;		(*  Tn								*)
+	stCTRL_PID_PARAMS.tTv					:= T#200MS;		(*  Tv								*)
+	stCTRL_PID_PARAMS.tTd					:= T#500MS;		(*  Td								*)
+	stCTRL_PID_PARAMS.fOutMaxLimit			:=  100.0;			(* maximum output limit			(for  fillValve)	*) 
+	stCTRL_PID_PARAMS.fOutMinLimit			:= -0.0;			(* minimum output limit			(for  fillValve)	*)
+	
+	
+	*)
+	(* set the mode to ACTIVE --> normal operation *)
+	
+	eMode := eCTRL_MODE_ACTIVE;
+
+	(* reset the init flag *)
+	bInit := FALSE;
+END_IF
+IF bInit AND eMode = 4 THEN
+	
+	stCTRL_PID_PARAMS := IN_stCTRL_PID_PARAMS;
+	(* init parameter struct *)
+
+	(* set the mode to ACTIVE --> normal operation *)
+	eMode := eCTRL_MODE_ACTIVE;
+
+	(* reset the init flag *)
+	bInit := FALSE;
+END_IF
+
+(* call controller *)
+fbCTRL_PID(		fSetpointValue		:= fSetpointValue,
+				fActualValue		:= fActualValue, //feedback value (proces variable)
+				fManSyncValue		:= fManSyncValue, // controll fOut directly with 0-100 %?
+				bSync				:= bSync,
+				eMode				:= eMode,
+				bHold				:= bHold,
+				stParams			:= stCTRL_PID_PARAMS,
+				fOut				=> fOut, // output to PID
+				bARWactive			=> bARWactive,
+				eErrorId			=> eErrorId,
+				bError				=> bError
+				);
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_PID">
+      <LineId Id="32" Count="6" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="327" Count="1" />
+      <LineId Id="376" Count="0" />
+      <LineId Id="329" Count="13" />
+      <LineId Id="375" Count="0" />
+      <LineId Id="343" Count="3" />
+      <LineId Id="348" Count="2" />
+      <LineId Id="378" Count="0" />
+      <LineId Id="351" Count="6" />
+      <LineId Id="359" Count="14" />
+      <LineId Id="86" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
