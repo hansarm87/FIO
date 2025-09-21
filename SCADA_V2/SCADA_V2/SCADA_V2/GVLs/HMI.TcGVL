@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <GVL Name="HMI" Id="{add065fa-5e0d-412a-aaaf-23109bc653c4}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	
+	//CMs for HVAC
+	CM_AV_1 : PlantAndCMs.Udt_CM_Actuator2State_V2;
+	
+	CM_PU_AO_1 : PlantAndCMs.Udt_CM_AO_V2;
+	
+	CM_MTR_AO_1 : PlantAndCMs.Udt_CM_AO_V2;
+	MTR_1_PO_PV : DINT;
+	
+	CM_DMP_AO_1 : PlantAndCMs.Udt_CM_Actuator2State_V2;
+	
+	//CMs For EQs
+	CM_MTR_3State : PlantAndCMs.Udt_CM_Actuator3State_V2;
+
+	//
+	outputFromPressure_1 : LREAL;
+	
+	
+	//PID
+	CM_DMP_1_PID_PARAMS : ST_CTRL_PID_PARAMS;
+	CM_MTR_1_PID_PARAMS : ST_CTRL_PID_PARAMS;
+	
+	//Simulation parameters
+	
+	
+	
+	
+	
+	//SP
+	
+	MTR_1_MAN_SP : DINT;
+	DMP_1_MAN_SP : DINT;
+	
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

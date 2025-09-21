@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="SITE_100MS" Id="{ca699103-72b3-4815-ac3b-7c95dae2f2e3}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM SITE_100MS
+VAR
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+
+PRG_PID_CALL();
+]]></ST>
+    </Implementation>
+    <LineIds Name="SITE_100MS">
+      <LineId Id="21" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="26" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

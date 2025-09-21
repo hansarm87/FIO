@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="SITE_MAIN_CYCLIC" Id="{1994aa3f-18f2-47f5-a784-fa9504543be7}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM SITE_MAIN_CYCLIC
+VAR
+	PlantControl_B57 : FB_PlantControl_B57;
+	PlantControl_B28 : FB_PlantControl_B28;
+	
+	SIM_CALL : CALL_SIM;
+	
+	HVAC_CM_CALL : HVAC_B28_CM_CALL;
+	
+	HVAC_MAIN_SEQ : HVAC_B28_Main_Seq;
+	
+	cm_AI_CALL : CM_AI_CALL;
+	cm_DO_3State_CALL : CM_DO_3state_CALL;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[PlantControl_B28();
+PlantControl_B57();
+
+
+//B28
+HVAC_CM_CALL();
+HVAC_MAIN_SEQ();
+
+//For testing:
+EQ_CALL();
+SIM_CALL();
+
+// CMs
+cm_AI_CALL();
+//cm_DO_3State_CALL();]]></ST>
+    </Implementation>
+    <LineIds Name="SITE_MAIN_CYCLIC">
+      <LineId Id="2" Count="0" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="57" Count="1" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="91" Count="0" />
+      <LineId Id="90" Count="0" />
+      <LineId Id="92" Count="0" />
+      <LineId Id="12" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="SIM_Valve_Damper_OPEN_CLOSE" Id="{5e20ad6d-f6fc-4a27-9946-3c8f421b0e9a}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK SIM_Valve_Damper_OPEN_CLOSE
+VAR_INPUT
+    Start_Open  : BOOL;
+    Start_Close : BOOL;
+    max_limit   : INT;
+    min_limit   : INT;
+END_VAR
+
+VAR_OUTPUT
+    Open_Finish  : BOOL:= FALSE;
+    Close_Finish : BOOL := FALSE;
+    open_status  : INT := 0;
+END_VAR
+
+VAR
+    timer : TON;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// Start timer only if movement is requested and not yet at limit
+IF (Start_Open AND open_status < max_limit) OR (Start_Close AND open_status > min_limit) THEN
+    timer(IN := TRUE, PT := T#1S);
+ELSE
+    timer(IN := FALSE);
+END_IF
+
+// On timer expiration, step open_status up or down
+IF timer.Q THEN
+    IF Start_Open AND open_status < max_limit THEN
+        open_status := open_status + 1;
+    ELSIF Start_Close AND open_status > min_limit THEN
+        open_status := open_status - 1;
+    END_IF
+    timer(IN := FALSE); // Reset timer after action
+END_IF
+
+// Output flags
+Open_Finish  := (open_status >= max_limit);
+Close_Finish := (open_status <= min_limit);]]></ST>
+    </Implementation>
+    <LineIds Name="SIM_Valve_Damper_OPEN_CLOSE">
+      <LineId Id="161" Count="18" />
+      <LineId Id="37" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <GVL Name="PAR" Id="{067d26ef-b93f-4cf5-b406-39bce32ec97f}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	
+	// DAMPER SP
+	
+	DMP_1_SP : INT; 
+	
+	//Motor SP
+	
+	MTR_1_SP : DINT;
+
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

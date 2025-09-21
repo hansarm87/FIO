@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <GVL Name="CMD" Id="{70f5f6d9-35db-4032-a601-50bccae1941c}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	Plant_B57_Control : PlantAndCMs.Udt_PlantControl;
+	
+	Plant_B28_Control : PlantAndCMs.Udt_PlantControl;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

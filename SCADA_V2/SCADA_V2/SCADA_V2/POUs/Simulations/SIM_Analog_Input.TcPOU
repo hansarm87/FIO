@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="SIM_Analog_Input" Id="{b370b351-6cf3-48de-9ec1-3df2daf87d26}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK SIM_Analog_Input
+VAR_INPUT
+    EnableSim   : BOOL;
+    AutoMode    : BOOL;
+    ManualValue : REAL;
+    AutoSpeed   : REAL;         // e.g. 0.1
+    
+	MinValue    : REAL;         // e.g. 0.0
+    MaxValue    : REAL;         // e.g. 100.0
+END_VAR
+
+VAR_OUTPUT
+    SimulatedValue : REAL;
+END_VAR
+
+VAR
+    timeCounter : REAL := 0.0;
+    timer       : TON;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// Auto simulation mode
+IF EnableSim THEN
+    IF AutoMode THEN
+        timer(IN := TRUE, PT := T#500ms);
+        IF timer.Q THEN
+            timer(IN := FALSE); // reset
+            timeCounter := timeCounter + AutoSpeed;
+            SimulatedValue := (MaxValue - MinValue)/2.0 * SIN(timeCounter) + (MaxValue + MinValue)/2.0;
+        END_IF
+    ELSE
+        // Manual override mode
+        SimulatedValue := LIMIT(MinValue, ManualValue, MaxValue);
+    END_IF
+ELSE
+    // Simulation disabled
+    SimulatedValue := 0.0;
+    timer(IN := FALSE);
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="SIM_Analog_Input">
+      <LineId Id="226" Count="17" />
+      <LineId Id="46" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

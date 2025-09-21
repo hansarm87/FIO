@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <GVL Name="SIM" Id="{40486601-3e77-4898-810f-58785197c349}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	
+	Pressure_1_Input : DINT;
+	Pressure_1 : REAL ;
+	
+	//Sim Damper
+	
+	Feedback_Open : BOOL;
+	Feedback_Closed : BOOL;
+	
+	DMP_1_INPUT : DINT;
+	DMP_1_OUTPUT : DINT;
+	
+	MTR_1_InputFromPID : DINT;
+	MTR_1_OutputToPID : DINT;
+	
+	// Conveyor sim
+	
+	CV_ON: BOOL;
+	CCV_ON: BOOL;
+	
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

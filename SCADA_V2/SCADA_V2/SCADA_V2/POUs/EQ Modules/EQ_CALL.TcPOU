@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="EQ_CALL" Id="{3489e295-7137-45fe-bb48-904335e6dc5b}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM EQ_CALL
+VAR
+	//EQ
+	conveyor_V1 : EQ_Conveyor_V1;
+	
+	
+	//CM
+	Coveyer_MTR_1 : PlantAndCMs.CM_Actuator3State_V2;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[conveyor_V1(	
+				
+				M_101_CW => SIM.CV_ON,
+				M_101_CCW => SIM.CCV_ON
+);
+
+Coveyer_MTR_1(
+	Local_MODE_request:= HMI.CM_MTR_3State.PO_MODE, 
+	Global_MODE_request:= CMD.Plant_B28_Control.PO_MODE, 
+	PI_MANUAL:= HMI.CM_MTR_3State.PO_MODE = 2, 
+	PI_HMI_HAND:= Coveyer_MTR_1.PI_HMI_HAND, 
+	PI_AUTO:= HMI.CM_MTR_3State.PO_MODE = 1 , 
+	PI_MANUAL_ON_1:= Coveyer_MTR_1.PI_MANUAL_ON_1, 
+	PI_MANUAL_ON_2:= Coveyer_MTR_1.PI_MANUAL_ON_2, 
+	PI_AUTO_ON_1:= SIM.CV_ON, 
+	PI_AUTO_ON_2:= SIM.CCV_ON, 
+	PI_OFF:= HMI.CM_MTR_3State.PO_MODE = 0 , 
+	PI_Alarm_Enable:= FALSE, 
+	PI_CM_Alarm:= FALSE, 
+	PI_CM_Interlock:= conveyor_V1.Alarm_1 OR conveyor_V1.Alarm_2, 
+	IN_ON=> , 
+	PO_AUTO_ON=> , 
+	PO_MANUAL_ON=> , 
+	PO_HMI_HAND_ON=> , 
+	PO_ON_1=> , 
+	PO_ON_2=> , 
+	PO_OFF=> , 
+	PO_CM_Alarm=> , 
+	PO_CM_Interlocked=> 
+	);]]></ST>
+    </Implementation>
+    <LineIds Name="EQ_CALL">
+      <LineId Id="5" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="24" Count="22" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="47" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

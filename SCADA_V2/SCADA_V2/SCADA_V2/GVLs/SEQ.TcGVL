@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <GVL Name="SEQ" Id="{8ed1fb12-3b79-4f3a-bc13-4cde9299cd12}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	
+	// HVAC_SEQ_28
+	
+	B28_STEP_1: BOOL;
+	B28_STEP_2 : BOOL;
+	B28_STEP_3 : BOOL;
+	B28_STEP_4 : BOOL;
+	B28_STEP_5 : BOOL;
+	B28_STEP_6: BOOL;
+
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

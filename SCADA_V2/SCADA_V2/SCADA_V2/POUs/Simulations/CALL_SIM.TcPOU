@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="CALL_SIM" Id="{84970b04-65bf-4953-a968-50fecc2e7b31}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK CALL_SIM
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	Damper_1_SIM : SIM_Valve_Damper_OPEN_CLOSE;
+	
+	pressure_1_SIM : SIM_Analog_Input;
+	
+	fb_ALT_2_PUMPS : FB_ALT_2_PUMPS;
+	LS1:BOOL;
+	LS2:BOOL;
+	LS3:BOOL;
+	LS4:BOOL;
+	
+	Pump_1 : BOOL;
+	Pump_2 : BOOL;
+	min_limit: INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+IF SEQ.B28_STEP_2 THEN
+	Damper_1_SIM(
+	max_limit := PAR.DMP_1_SP,
+	min_limit := 0,
+	
+	Start_Open := SEQ.B28_STEP_2,
+	Start_Close := FALSE,//SEQ.B28_STEP_3,
+	Open_Finish => SIM.Feedback_Open,
+	Close_Finish => SIM.Feedback_Closed,
+	open_status => SIM.DMP_1_OUTPUT
+	
+);
+END_IF
+
+
+fb_ALT_2_PUMPS(
+	LS_1 := LS1,
+	LS_2 := LS2,
+	LS_3 := LS3,
+	
+	Pump_1 => Pump_1,
+	Pump_2 => Pump_2
+	);
+
+pressure_1_SIM(
+	EnableSim := CMD.Plant_B28_Control.PO_ON,
+	AutoMode := SEQ.B28_STEP_3,
+	ManualValue :=  HMI.MTR_1_MAN_SP,
+	AutoSpeed := 0.1,
+	MinValue := 15000,
+	MaxValue := 30000,
+	ManualValue := 10,
+	SimulatedValue => SIM.Pressure_1,
+	);]]></ST>
+    </Implementation>
+    <LineIds Name="CALL_SIM">
+      <LineId Id="152" Count="1" />
+      <LineId Id="168" Count="7" />
+      <LineId Id="222" Count="0" />
+      <LineId Id="177" Count="0" />
+      <LineId Id="166" Count="1" />
+      <LineId Id="121" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="27" Count="4" />
+      <LineId Id="34" Count="1" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="101" Count="0" />
+      <LineId Id="223" Count="0" />
+      <LineId Id="219" Count="1" />
+      <LineId Id="78" Count="1" />
+      <LineId Id="198" Count="0" />
+      <LineId Id="80" Count="1" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="PRG_PID_CALL" Id="{72632576-8a01-4602-b918-380b388b44b7}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM PRG_PID_CALL
+VAR
+	//B28
+	B28_MTR_1_PID : PlantAndCMs.FB_PID;
+	
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*
+// MOTOR 1 PID CALL
+HMI.CM_MTR_1_PID_PARAMS.tCtrlCycleTime := T#500MS;
+HMI.CM_MTR_1_PID_PARAMS.tTaskCycleTime := T#100MS;
+HMI.CM_MTR_1_PID_PARAMS.fKp := 5.0;	
+HMI.CM_MTR_1_PID_PARAMS.tTd := T#500MS;
+HMI.CM_MTR_1_PID_PARAMS.tTn := T#100S;
+HMI.CM_MTR_1_PID_PARAMS.tTv := T#200MS;	
+HMI.CM_MTR_1_PID_PARAMS.fOutMinLimit := 0.0;
+HMI.CM_MTR_1_PID_PARAMS.fOutMaxLimit := 100.0;
+
+
+B28_MTR_1_PID(
+	IN_stCTRL_PID_PARAMS := HMI.CM_MTR_1_PID_PARAMS
+	);
+
+HMI.CM_DMP_1_PID_PARAMS.tCtrlCycleTime := T#500MS;
+HMI.CM_DMP_1_PID_PARAMS.tTaskCycleTime := T#100MS;
+HMI.CM_DMP_1_PID_PARAMS.fKp := 5.0;	
+HMI.CM_DMP_1_PID_PARAMS.tTd := T#500MS;
+HMI.CM_DMP_1_PID_PARAMS.tTn := T#100S;
+HMI.CM_DMP_1_PID_PARAMS.tTv := T#200MS;	
+HMI.CM_DMP_1_PID_PARAMS.fOutMinLimit := 0.0;
+HMI.CM_DMP_1_PID_PARAMS.fOutMaxLimit := 180.0;
+
+B28_DMP_1_PID(
+	IN_stCTRL_PID_PARAMS := HMI.CM_MTR_1_PID_PARAMS
+	);
+*)
+
+PRG_FB_CTRL_PID();]]></ST>
+    </Implementation>
+    <LineIds Name="PRG_PID_CALL">
+      <LineId Id="39" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="17" Count="1" />
+      <LineId Id="20" Count="5" />
+      <LineId Id="64" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="8" Count="1" />
+      <LineId Id="50" Count="11" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="81" Count="1" />
+      <LineId Id="48" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
